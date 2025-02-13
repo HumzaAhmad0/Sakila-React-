@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import PartialMovieCard from "./PartialMovieCard"
+import SpotLight from "./Spotlight"
+import SubLight from "./SubLight"
 
 interface Movie{
     id: number,
@@ -25,8 +27,30 @@ export default function Top5Films(){
     }, [])
 
 
-    return <ul>
-        {movies.map(movie => <PartialMovieCard title={movie.title} description={movie.description} releaseYear={movie.releaseYear} score={movie.score}/>)}
-    </ul>
+    return (
+        <div>
+        {movies.length > 0 && (
+          <SpotLight
+            id={movies[0].id}
+            title={movies[0].title}
+            description={movies[0].description}
+            releaseYear={movies[0].releaseYear}
+            score={movies[0].score}
+          />
+        )}
+  
+        <div className="sublight-container">
+          {movies.slice(1).map((movie) => (
+            <SubLight
+              key={movie.id}
+              id={movie.id}
+              title={movie.title}
+              releaseYear={movie.releaseYear}
+              score={movie.score}
+            />
+          ))}
+        </div>
+      </div>
+    )
 
 }

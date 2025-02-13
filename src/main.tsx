@@ -8,6 +8,9 @@ import NavBar from './components/NavBar.tsx'
 import ActorsPage from './pages/ActorsPage.tsx'
 import SpecificFilmPage from './pages/SpecifcFilmPage.tsx'
 import SpecificActorPage from './pages/SpecificActorPage.tsx'
+import backgroundImg from './assets/seamless-repeating-pattern-movie-filming-web-sites-wrapping-printing-postcards_387335-741.png'
+
+document.body.style.backgroundImage= `url(${backgroundImg})`
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

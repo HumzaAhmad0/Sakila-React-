@@ -32,6 +32,6 @@ export default function ActorList(){
     if(actors === null) return <p>failed to load actor</p>
 
     return <ul>
-        {actors.map(actor => <PartialActorCard fullName={actor.fullName} id={actor.id}/>)}
+        {actors.map(actor => <PartialActorCard key={actor.id} fullName={actor.fullName} id={actor.id}/>)}
     </ul>
 }

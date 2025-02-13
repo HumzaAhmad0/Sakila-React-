@@ -39,7 +39,7 @@ export default function MovieList(){
     if(movies === null) return <p>failed to load movies</p>
 
     return <ul>
-        {movies.map(movie => <PartialMovieCard title={movie.title} description={movie.description} releaseYear={movie.releaseYear} id={movie.id}/>)}
+        {movies.map(movie => <PartialMovieCard key={movie.id} title={movie.title} description={movie.description} releaseYear={movie.releaseYear} id={movie.id}/>)}
     </ul>
 
 }

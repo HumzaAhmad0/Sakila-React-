@@ -1,0 +1,57 @@
+.sublight-container {
+    position: absolute;
+    bottom: 5%; 
+    left: 50%;
+    transform: translateX(-50%);
+    display:flex;
+    gap: 35px;
+    justify-content: center;
+    width: 90%;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.sublight-card {
+    width: 18%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    font-family: "Moderustic", serif;
+    font-weight: 10;
+    letter-spacing: 0.2ch;
+}
+
+.sublight-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+.sublight-card:hover .sublight-score {
+    font-size: larger;
+    font-weight:300;
+    text-shadow: 0 0 5px rgba(255, 204, 255, 0.7), 0 0 100px rgba(255, 204, 255, 0.7); 
+}
+
+.sublight-content {
+    position: relative;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.sublight-score {
+    font-family: "Ultra", serif;
+    font-weight: 10;
+    transition: all 0.3s ease-in-out;
+}
