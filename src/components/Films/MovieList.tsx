@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PartialMovieCard from "./PartialMovieCard";
+import { Link } from "react-router";
 
 interface Movie{
     id: number,
@@ -41,6 +42,7 @@ export default function MovieList(){
     return (
         <div className="cards-container-main">
             <div className="cards-container">
+            <Link className="" to="/createFilm">Click me</Link>
                 {movies.map(movie =>
                 <PartialMovieCard 
                     key={movie.id}

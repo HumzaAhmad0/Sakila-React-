@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import PartialActorCard from "./PartialActorCard"
+import { Link } from "react-router"
 
 interface Actor{
     id: number,
@@ -34,6 +35,7 @@ export default function ActorList(){
     return (
         <div className="cards-container-main">
           <div className="cards-container">
+          <Link className="" to="/createActor">Click me</Link>
             {actors.map((actor) => (
               <PartialActorCard
                 key={actor.id}
