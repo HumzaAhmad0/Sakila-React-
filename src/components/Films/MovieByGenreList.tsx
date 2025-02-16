@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import MovieCard from "./MovieCard"
 import { useParams } from "react-router"
 import PartialMovieCard from "./PartialMovieCard"
 

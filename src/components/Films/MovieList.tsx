@@ -38,8 +38,22 @@ export default function MovieList(){
     if(error !== null) return <p>{error.message}</p>
     if(movies === null) return <p>failed to load movies</p>
 
-    return <ul>
-        {movies.map(movie => <PartialMovieCard key={movie.id} title={movie.title} description={movie.description} releaseYear={movie.releaseYear} id={movie.id}/>)}
-    </ul>
+    return (
+        <div className="cards-container-main">
+            <div className="cards-container">
+                {movies.map(movie =>
+                <PartialMovieCard 
+                    key={movie.id}
+                    title={movie.title} 
+                    description={movie.description} 
+                    releaseYear={movie.releaseYear}
+                    // score={movie.score} 
+                    id={movie.id}
+                />)}
+            </div>
+        </div>
+    )
+        
+
 
 }

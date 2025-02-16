@@ -31,7 +31,17 @@ export default function ActorList(){
     if(error !== null) return <p>{error.message}</p>
     if(actors === null) return <p>failed to load actor</p>
 
-    return <ul>
-        {actors.map(actor => <PartialActorCard key={actor.id} fullName={actor.fullName} id={actor.id}/>)}
-    </ul>
+    return (
+        <div className="cards-container-main">
+          <div className="cards-container">
+            {actors.map((actor) => (
+              <PartialActorCard
+                key={actor.id}
+                id={actor.id}
+                fullName={actor.fullName}
+              />
+            ))}
+          </div>
+        </div>
+      )
 }

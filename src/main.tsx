@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/films" element ={<FilmsPage/>}/>
         <Route path="/actors" element ={<ActorsPage/>}/>
         <Route path="/genres" element = {<GenresPage/>}/>
-        <Route path="/genre/:name" element ={<MovieByGenrePage/>}/>
+        <Route path="/genre/:name" element ={<MovieByGenrePage/>}/>        
         <Route path="/film/:id" element ={<SpecificFilmPage/>}/>
         <Route path="/actor/:id" element ={<SpecificActorPage/>}/>
       </Routes>

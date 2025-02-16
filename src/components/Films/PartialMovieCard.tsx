@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import "./PartialMovieCard.css"
 
 interface PartialMovieCardProps{
     id?: number,
@@ -20,21 +21,22 @@ interface PartialMovieCardProps{
 export default function PartialMovieCard(props: PartialMovieCardProps){
     if (props.score != null){
         return(
-            <article>
-            <h1>{props.title}</h1>
-            <h2>{props.releaseYear}</h2>
-            <p>{props.description}</p>
-            <h2>{props.score} /100</h2>
+            <article className="card">
+            <h1 className="title">{props.title}</h1>
+            <h2 className="year">{props.releaseYear}</h2>
+            <p className="desc">{props.description}</p>
+            <h2 className="score">{props.score} /100</h2>
+            <Link className="more-info" to={`/film/${props.id}`}>More Info</Link>
         </article>
         )
     }
     
     return(
-        <article>
-            <h1>{props.title}</h1>
-            <h2>{props.releaseYear}</h2>
-            <p>{props.description}</p>
-            <Link to={`/film/${props.id}`}>More Info</Link>
+        <article className="card">
+            <h1 className="title">{props.title}</h1>
+            <h2 className="year">{props.releaseYear}</h2>
+            <p className="desc">{props.description}</p>
+            <Link className="more-info" to={`/film/${props.id}`}>More Info</Link>
         </article>
     )
 }
