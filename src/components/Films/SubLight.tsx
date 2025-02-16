@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import './SubLight.css';
 
 
@@ -19,11 +20,13 @@ interface SubLightProps {
           backgroundImage: `url(${backgroundImageUrl})`,
         }}
       >
-        <div className="sublight-content">
+        <Link to={`/film/${id}`}>
+        <div className="sublight-content" >
           <h4>{title}</h4>
           <p>{releaseYear}</p>
           <p className='sublight-score'>{score}/100</p>
         </div>
+        </Link>
       </div>
     );
   }

@@ -1,5 +1,7 @@
+import GenreList from "../components/Genre/GenreList";
+
 export default function GenresPage(){
     return(
-        <h1>genre</h1>
+        <GenreList/>
     )
 }

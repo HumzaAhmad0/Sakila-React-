@@ -9,6 +9,7 @@ import ActorsPage from './pages/ActorsPage.tsx'
 import SpecificFilmPage from './pages/SpecifcFilmPage.tsx'
 import SpecificActorPage from './pages/SpecificActorPage.tsx'
 import backgroundImg from './assets/seamless-repeating-pattern-movie-filming-web-sites-wrapping-printing-postcards_387335-741.png'
+import GenresPage from './pages/GenresPage.tsx'
 
 document.body.style.backgroundImage= `url(${backgroundImg})`
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element ={<HomePage/>}/>
         <Route path="/films" element ={<FilmsPage/>}/>
         <Route path="/actors" element ={<ActorsPage/>}/>
+        <Route path="/genres" element = {<GenresPage/>}/>
         <Route path="/film/:id" element ={<SpecificFilmPage/>}/>
         <Route path="/actor/:id" element ={<SpecificActorPage/>}/>
       </Routes>
