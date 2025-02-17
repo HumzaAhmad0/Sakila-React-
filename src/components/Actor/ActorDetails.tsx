@@ -35,6 +35,7 @@ export default function ActorDetails(){
 
     return <ul>
         {actor && <ActorCard 
+        id = {actor.id}
         firstName={actor.firstName}
         lastName={actor.lastName}
         fullName={actor.fullName}
