@@ -109,6 +109,7 @@ export default function UpdateActorPage(){
             <label> ID: <input
             //   type="number"
               value={id}
+              disabled
               readOnly
             />
             </label>

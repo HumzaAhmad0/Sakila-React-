@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import PartialMovieCard from "./PartialMovieCard"
-import SpotLight from "./Spotlight"
+import SpotLight from "./SpotLight"
 import SubLight from "./SubLight"
 
 interface Movie{

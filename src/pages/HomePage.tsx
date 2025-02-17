@@ -1,7 +1,5 @@
 // import Top5Films from "../components/Films/Top5Films";
 
-import SpotLight from "../components/Films/Spotlight";
-import SubLight from "../components/Films/SubLight";
 import Top5Films from "../components/Films/Top5Films";
 
 export default function HomePage(){

@@ -41,7 +41,7 @@ export default function ReplaceActorPage(){
             headers: {
               "Content-Type": "application/json", 
             },
-            body: JSON.stringify(actorData), 
+            body: JSON.stringify(actorData),
           })
             .then((response) => {
               if (!response.ok) {
@@ -71,6 +71,7 @@ export default function ReplaceActorPage(){
             <label> ID: <input
             //   type="number"
               value={id}
+              disabled
               readOnly
             />
             </label>

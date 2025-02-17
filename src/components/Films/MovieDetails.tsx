@@ -24,7 +24,7 @@ export default function MovieDetails(){
     
         useEffect(()=>{
             fetch(`http://localhost:8080/films/${id}`).then(res => res.json()).then(setMovie)
-        }, [])
+        }, [id])
     
         console.log(movie)
 
