@@ -21,8 +21,7 @@ export default function ActorCard(props: ActorCardProps){
             <p>{props.fullName}</p>
             <p>Films: {props.films?.map(films=> <li>{films.title} {films.releaseDate}</li>)}</p>
             <Link to={`/replaceActor/${props.id}`}>Replace Actor</Link>
-
-
+            <Link to={`/updateActor/${props.id}`}>Update Actor</Link>
         </article>
     )
 }

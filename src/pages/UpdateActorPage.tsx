@@ -2,8 +2,26 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 
+interface Film {
+    id: number;
+    title: string;
+    releaseDate: number;
+}
 
-export default function ReplaceActorPage(){
+interface Actor{
+    id: number,
+    firstName: string,
+    lastName: string,
+    fullName: string,
+    films: {id: number, title: string, releaseDate: number}[]
+}
+
+
+export default function UpdateActorPage(){
+    const[actor, setActor] = useState<Actor|null>(null)
+    const[error, setError] = useState<Error|null>(null)
+    const[loading, setLoading] = useState(true)
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [movies, setMovies] = useState("");
@@ -15,13 +33,33 @@ export default function ReplaceActorPage(){
         console.log("Actor ID:", id);
     }, [id]);
 
+    useEffect(()=>{
+        fetch(`http://localhost:8080/actors/${id}`)
+        .then(res => {
+           if (!res.ok) throw new Error(`Actor not found, ERROR ${res.status}`)
+           return res.json()
+        })
+        .then((data)=>{
+            setActor(data);
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+            setMovies(data.films.map((film:Film) => film.id).join(", "));
+        })
+        .catch(setError)
+        .finally(()=>setLoading(false))
+    }, [id])
+
+    if(loading) return <p>loading...</p>
+    if(error !== null) return <p>{error.message}</p>
+    if(actor === null) return <p>failed to load actor</p>
+
     const handleSubmitActor = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     
-        if (!firstName || !lastName || !movies) {
-          alert("Please fill out all fields.");
-          return;
-        }
+        // if (!firstName || !lastName || !movies) {
+        //   alert("Please fill out all fields.");
+        //   return;
+        // }
     
         const movieIds = movies
           .split(",") 
@@ -50,17 +88,17 @@ export default function ReplaceActorPage(){
               return response.json(); 
             })
             .then((result) => {
-              console.log("Actor replaced:", result); 
+              console.log("Actor updated:", result); 
       
               setFirstName("");
               setLastName("");
               setMovies("");
-              alert("Actor replaced successfully!");
+              alert("Actor updated successfully!");
               navigate(`/actor/${id}`);
             })
             .catch((error) => {
-              console.error("Error replacing actor:", error);
-              alert("An error occurred while replacing the actor.");
+              console.error("Error updated actor:", error);
+              alert("An error occurred while updating the actor.");
             });
       };
     
