@@ -1,31 +1,14 @@
-import { useState } from "react";
 import { baseUrl } from "../config";
+import ActorForm from "../components/ActorForm";
 
 export default function CreateActorPage(){
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [movies, setMovies] = useState("");    
 
-    const handleSubmitActor = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmitActor = (actorData: {
+            firstName: string
+            lastName: string
+            films: number[]
+        }) => {
     
-        if (!firstName || !lastName || !movies) {
-          alert("Please fill out all fields.");
-          return;
-        }
-    
-        const movieIds = movies
-          .split(",") 
-          .map((movie) => parseInt(movie.trim())) 
-          .filter((movie) => !isNaN(movie));
-    
-        const actorData = {
-          firstName,
-          lastName,
-          films: movieIds, 
-        };
-    
-        console.log(actorData); 
 
         fetch(`${baseUrl}/actors`, {
             method: "POST",
@@ -41,11 +24,6 @@ export default function CreateActorPage(){
               return response.json(); 
             })
             .then((result) => {
-              console.log("Actor created:", result); 
-      
-              setFirstName("");
-              setLastName("");
-              setMovies("");
               alert("Actor created successfully!");
             })
             .catch((error) => {
@@ -57,30 +35,7 @@ export default function CreateActorPage(){
     return(
         <div>
         <h1>Create Actor</h1>
-        <form onSubmit={handleSubmitActor}>
-          <label> First Name: <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </label>
-          <br />
-          <label>Last Name:<input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </label>
-          <br />
-          <label>Movies starred in (comma-separated IDs):<input
-              type="text"
-              value={movies}
-              onChange={(e) => setMovies(e.target.value)}
-            />
-          </label>
-          <br />
-          <button type="submit">Submit</button>
-        </form>
+        <ActorForm onSubmit={handleSubmitActor}/>
       </div>
     )
 }

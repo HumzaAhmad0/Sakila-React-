@@ -2,20 +2,10 @@ import { useEffect, useState } from "react"
 import PartialActorCard from "./PartialActorCard"
 import { Link } from "react-router"
 import { baseUrl } from "../../config"
-
-
-interface Actor{
-    id: number,
-    firstName: string,
-    lastName: string,
-    fullName: string,
-    films: [{id: number, title: string, releaseYear: number}]
-}
-
-
+import { PartialActor } from "../../types"
 
 export default function ActorList(){
-    const [actors, setActors] = useState<Actor[]>([])
+    const [actors, setActors] = useState<PartialActor[]>([])
     const[error, setError] = useState<Error|null>(null)
     const[loading, setLoading] = useState(true)
 
@@ -41,8 +31,7 @@ export default function ActorList(){
             {actors.map((actor) => (
               <PartialActorCard
                 key={actor.id}
-                id={actor.id}
-                fullName={actor.fullName}
+                actor={actor}
               />
             ))}
           </div>

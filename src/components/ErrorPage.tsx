@@ -2,7 +2,6 @@ interface ErrorPageProps{
     statusCode: number
 }
 
-
 export default function ErrorPage(props: ErrorPageProps){
     return(
         <article>

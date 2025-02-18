@@ -1,16 +1,14 @@
 import { Link } from 'react-router';
 import './SubLight.css';
+import { PartialFilm } from '../../types';
 
 
 interface SubLightProps {
-    id: number;
-    title: string;
-    releaseYear: number;
-    score: number;
+    film: PartialFilm
   }
   
   export default function SubLight(props: SubLightProps) {
-    const { id, title, releaseYear, score } = props;
+    const { id, title, releaseYear, score } = props.film;
     const backgroundImageUrl = `https://picsum.photos/seed/${id}/300/200`;
   
     return (

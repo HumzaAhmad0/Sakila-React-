@@ -1,42 +1,32 @@
 import { Link } from "react-router"
 import "./PartialMovieCard.css"
+import { PartialFilm } from "../../types"
 
 interface PartialMovieCardProps{
-    id?: number,
-    title: string,
-    description: string,
-    releaseYear: number,
-    // language?: {id: number, name: string},
-    // movieLength?: number,
-    // rating?: string,
-    // cast?: {id: number, fullName: string}[],
-    // genre?: {id: number, name: string}[],
-    score?: number,
-    // rentalRate?: number,
-    // rentalDuration?: number,
-    // rental?: string
+    film: PartialFilm
 }
 
-
 export default function PartialMovieCard(props: PartialMovieCardProps){
-    if (props.score != null){
+   const {id, title, description, releaseYear, score} = props.film
+    
+    if (score != undefined){
         return(
             <article className="card">
-            <h1 className="title">{props.title}</h1>
-            <h2 className="year">{props.releaseYear}</h2>
-            <p className="desc">{props.description}</p>
-            <h2 className="score">{props.score} /100</h2>
-            <Link className="more-info" to={`/film/${props.id}`}>More Info</Link>
+            <h1 className="title">{title}</h1>
+            <h2 className="year">{releaseYear}</h2>
+            <p className="desc">{description}</p>
+            <h2 className="score">{score} /100</h2>
+            <Link className="more-info" to={`/film/${id}`}>More Info</Link>
         </article>
         )
     }
     
     return(
         <article className="card">
-            <h1 className="title">{props.title}</h1>
-            <h2 className="year">{props.releaseYear}</h2>
-            <p className="desc">{props.description}</p>
-            <Link className="more-info" to={`/film/${props.id}`}>More Info</Link>
+            <h1 className="title">{title}</h1>
+            <h2 className="year">{releaseYear}</h2>
+            <p className="desc">{description}</p>
+            <Link className="more-info" to={`/film/${id}`}>More Info</Link>
         </article>
     )
 }

@@ -2,14 +2,7 @@ import { useEffect, useState } from "react"
 import ActorCard from "./ActorCard"
 import { useParams } from "react-router"
 import { baseUrl } from "../../config"
-
-interface Actor{
-    id: number,
-    firstName: string,
-    lastName: string,
-    fullName: string,
-    films: {id: number, title: string, releaseDate: number}[]
-}
+import { Actor } from "../../types"
 
 export default function ActorDetails(){
     const {id} = useParams()
@@ -35,13 +28,7 @@ export default function ActorDetails(){
     if(actor === null) return <p>failed to load actor</p>
 
     return <ul>
-        {actor && <ActorCard 
-        id = {actor.id}
-        firstName={actor.firstName}
-        lastName={actor.lastName}
-        fullName={actor.fullName}
-        films={actor.films}        
-        />}
+        {actor && <ActorCard actor={actor} />}
     </ul>
 
 }

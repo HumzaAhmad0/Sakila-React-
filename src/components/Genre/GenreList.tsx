@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
 import GenreCard from "./GenreCard"
 import { baseUrl } from "../../config"
-
-interface Genre{
-    name: string
-}
+import { Genre } from "../../types"
 
 export default function GenreList(){
     const [genres, setGenres] = useState<Genre[]>([])
@@ -27,6 +24,6 @@ export default function GenreList(){
     if(genres === null) return <p>failed to load actor</p>
 
     return <ul>
-        {genres.map(genre => <GenreCard name={genre.name}/>)}
+        {genres.map(genre => <GenreCard key={genre.name} name={genre.name}/>)}
     </ul>
 }

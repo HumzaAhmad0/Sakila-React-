@@ -1,20 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { baseUrl } from "../config";
+import { Actor, PartialFilmForActor } from "../types";
 
-interface Film {
-    id: number;
-    title: string;
-    releaseDate: number;
-}
-
-interface Actor{
-    id: number,
-    firstName: string,
-    lastName: string,
-    fullName: string,
-    films: {id: number, title: string, releaseDate: number}[]
-}
 
 
 export default function UpdateActorPage(){
@@ -23,15 +11,12 @@ export default function UpdateActorPage(){
     const[loading, setLoading] = useState(true)
 
     const [firstName, setFirstName] = useState("");
+    const [initalFName, setInitialFName] = useState("");
     const [lastName, setLastName] = useState("");
     const [movies, setMovies] = useState("");
 
     const {id} = useParams();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log("Actor ID:", id);
-    }, [id]);
 
     useEffect(()=>{
         fetch(`${baseUrl}/actors/${id}`)
@@ -42,8 +27,9 @@ export default function UpdateActorPage(){
         .then((data)=>{
             setActor(data);
             setFirstName(data.firstName);
+            setInitialFName(data.fullName);
             setLastName(data.lastName);
-            setMovies(data.films.map((film:Film) => film.id).join(", "));
+            setMovies(data.films.map((film:PartialFilmForActor) => film.id).join(", "));
         })
         .catch(setError)
         .finally(()=>setLoading(false))
@@ -72,8 +58,6 @@ export default function UpdateActorPage(){
           films: movieIds, 
         };
     
-        console.log(actorData); 
-
         fetch(`${baseUrl}/actors/${id}`, {
             method: "PUT",
             headers: {
@@ -87,9 +71,7 @@ export default function UpdateActorPage(){
               }
               return response.json(); 
             })
-            .then((result) => {
-              console.log("Actor updated:", result); 
-      
+            .then(() => {     
               setFirstName("");
               setLastName("");
               setMovies("");
@@ -104,16 +86,16 @@ export default function UpdateActorPage(){
     
     return(
         <div>
-        <h1>Replace Actor</h1>
+        <h1>Edit Actor: {initalFName} {id}</h1>
         <form onSubmit={handleSubmitActor}>
-            <label> ID: <input
+            {/* <label> ID: <input
             //   type="number"
               value={id}
               disabled
               readOnly
             />
             </label>
-            <br />
+            <br /> */}
             <label> First Name: <input
               type="text"
               value={firstName}

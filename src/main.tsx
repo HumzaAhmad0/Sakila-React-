@@ -13,7 +13,7 @@ import GenresPage from './pages/GenresPage.tsx'
 import MovieByGenrePage from './pages/MoviesByGenrePage.tsx'
 import CreateFilmPage from './pages/CreateFilmPage.tsx'
 import CreateActorPage from './pages/CreateActorPage.tsx'
-import ReplaceActorPage from './pages/ReplaceActorPage.tsx'
+// import ReplaceActorPage from './pages/ReplaceActorPage.tsx'
 import UpdateActorPage from './pages/UpdateActorPage.tsx'
 
 document.body.style.backgroundImage= `url(${backgroundImg})`
@@ -29,7 +29,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/genres" element = {<GenresPage/>}/>
         <Route path="/createFilm" element = {<CreateFilmPage/>}/>
         <Route path="/createActor" element = {<CreateActorPage/>}/>
-        <Route path="/replaceActor/:id" element = {<ReplaceActorPage/>}/>
+        {/* <Route path="/replaceActor/:id" element = {<ReplaceActorPage/>}/> */}
         <Route path="/updateActor/:id" element = {<UpdateActorPage/>}/>
         <Route path="/genre/:name" element ={<MovieByGenrePage/>}/>        
         <Route path="/film/:id" element ={<SpecificFilmPage/>}/>

@@ -1,27 +1,42 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { baseUrl } from "../../config"
+import { Actor } from "../../types";
 
 interface ActorCardProps{
-    id?: number,
-    firstName: string,
-    lastName: string,
-    fullName: string,
-    films: {id: number, title: string, releaseDate: number}[]
+    actor: Actor
 }
 
+async function DeleteActor(id: number){
+    return fetch(`${baseUrl}/actors/${id}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+        } else {
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
 
 export default function ActorCard(props: ActorCardProps){
-    
-    console.log("ActorCard props:", props);
-    
+    const {id, firstName, lastName, fullName, films} = props.actor;
+    const navigate = useNavigate();
+ 
+    const handleDelete = ()=>{
+        DeleteActor(id).then( () =>{
+            navigate("/actors")
+        })
+    }
+
     return(
         <article>
-            <h1>{props.id}</h1>
-            <p>{props.firstName}</p>
-            <p>{props.lastName}</p>
-            <p>{props.fullName}</p>
-            <p>Films: {props.films?.map(films=> <li>{films.title} {films.releaseDate}</li>)}</p>
-            <Link to={`/replaceActor/${props.id}`}>Replace Actor</Link>
-            <Link to={`/updateActor/${props.id}`}>Update Actor</Link>
+            <h1>{id}</h1>
+            <p>{firstName}</p>
+            <p>{lastName}</p>
+            <p>{fullName}</p>
+            <p>Films: {films?.map(film=> <li key={film.id}>{film.title} {film.releaseYear}</li>)}</p>
+            <Link to={`/updateActor/${id}`}>Update Actor</Link>
+            <button onClick={handleDelete}>Delete</button>
         </article>
     )
 }

@@ -2,26 +2,11 @@ import { useEffect, useState } from "react";
 import PartialMovieCard from "./PartialMovieCard";
 import { Link } from "react-router";
 import { baseUrl } from "../../config"
-
-interface Movie{
-    id: number,
-    title: string,
-    description: string,
-    releaseYear: number,
-    language: {id: number, name: string},
-    movieLength: number,
-    rating: string,
-    cast: {id: number, fullName: string}[],
-    genre: {id: number, name: string}[],
-    score: number,
-    rentalRate: number,
-    rentalDuration: number,
-    rental: string
-}
+import { Film } from "../../types";
 
 
 export default function MovieList(){
-    const [movies, setMovies] = useState<Movie[]>([])
+    const [movies, setMovies] = useState<Film[]>([])
     const[error, setError] = useState<Error|null>(null)
     const[loading, setLoading] = useState(true)
 
@@ -45,14 +30,7 @@ export default function MovieList(){
             <div className="cards-container">
             <Link className="" to="/createFilm">Click me</Link>
                 {movies.map(movie =>
-                <PartialMovieCard 
-                    key={movie.id}
-                    title={movie.title} 
-                    description={movie.description} 
-                    releaseYear={movie.releaseYear}
-                    // score={movie.score} 
-                    id={movie.id}
-                />)}
+                <PartialMovieCard key={movie.id} film={movie} />)}
             </div>
         </div>
     )
