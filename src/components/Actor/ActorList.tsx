@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import PartialActorCard from "./PartialActorCard"
 import { Link } from "react-router"
+import { baseUrl } from "../../config"
+
 
 interface Actor{
     id: number,
@@ -18,7 +20,7 @@ export default function ActorList(){
     const[loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch("http://localhost:8080/actors")
+        fetch(`${baseUrl}/actors`)
         .then(res => {
             if(!res.ok) throw new Error(`Actors not found, ERROR ${res.status}`)
             return res.json()

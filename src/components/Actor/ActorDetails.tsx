@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ActorCard from "./ActorCard"
 import { useParams } from "react-router"
+import { baseUrl } from "../../config"
 
 interface Actor{
     id: number,
@@ -19,7 +20,7 @@ export default function ActorDetails(){
 
 
     useEffect(()=>{
-         fetch(`http://localhost:8080/actors/${id}`)
+         fetch(`${baseUrl}/actors/${id}`)
          .then(res => {
             if (!res.ok) throw new Error(`Actor not found, ERROR ${res.status}`)
             return res.json()

@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { baseUrl } from "../config";
 
 export default function CreateActorPage(){
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [movies, setMovies] = useState("");
+    const [movies, setMovies] = useState("");    
 
     const handleSubmitActor = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -26,7 +27,7 @@ export default function CreateActorPage(){
     
         console.log(actorData); 
 
-        fetch("http://localhost:8080/actors", {
+        fetch(`${baseUrl}/actors`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json", 

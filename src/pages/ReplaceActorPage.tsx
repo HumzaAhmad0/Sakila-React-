@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-
+import { baseUrl } from "../config";
 
 
 export default function ReplaceActorPage(){
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [movies, setMovies] = useState("");
+
 
     const {id} = useParams();
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function ReplaceActorPage(){
     
         console.log(actorData); 
 
-        fetch(`http://localhost:8080/actors/${id}`, {
+        fetch(`${baseUrl}/actors/${id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json", 

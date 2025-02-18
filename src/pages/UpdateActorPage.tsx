@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-
+import { baseUrl } from "../config";
 
 interface Film {
     id: number;
@@ -34,7 +34,7 @@ export default function UpdateActorPage(){
     }, [id]);
 
     useEffect(()=>{
-        fetch(`http://localhost:8080/actors/${id}`)
+        fetch(`${baseUrl}/actors/${id}`)
         .then(res => {
            if (!res.ok) throw new Error(`Actor not found, ERROR ${res.status}`)
            return res.json()
@@ -74,7 +74,7 @@ export default function UpdateActorPage(){
     
         console.log(actorData); 
 
-        fetch(`http://localhost:8080/actors/${id}`, {
+        fetch(`${baseUrl}/actors/${id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json", 

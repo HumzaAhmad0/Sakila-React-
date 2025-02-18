@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import SpotLight from "./SpotLight"
 import SubLight from "./SubLight"
+import { baseUrl } from "../../config"
 
 interface Movie{
     id: number,
@@ -20,9 +21,13 @@ interface Movie{
 
 export default function Top5Films(){
     const [movies, setMovies] = useState<Movie[]>([])
+    console.log("the url being used is" + baseUrl);
+    console.log("the url being used is" + import.meta.env.VITE_API_BASE_URL);
+    
+
 
     useEffect(()=>{
-        fetch("http://localhost:8080/films?sortByScore=1").then(res => res.json()).then(setMovies)
+        fetch(`${baseUrl}/films?sortByScore=1`).then(res => res.json()).then(setMovies)
     }, [])
 
 

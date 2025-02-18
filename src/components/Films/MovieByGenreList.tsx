@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import PartialMovieCard from "./PartialMovieCard"
+import { baseUrl } from "../../config"
 
 interface Movie{
     id: number,
@@ -23,7 +24,7 @@ export default function MovieByGenreList(){
         const {name: genre} = useParams()
     
         useEffect(()=>{
-            fetch(`http://localhost:8080/films?categoryName=${genre}`).then(res => res.json()).then(setMovies)
+            fetch(`${baseUrl}/films?categoryName=${genre}`).then(res => res.json()).then(setMovies)
         }, [genre])
     
         console.log(movies)

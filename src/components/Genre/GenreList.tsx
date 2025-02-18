@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import GenreCard from "./GenreCard"
+import { baseUrl } from "../../config"
 
 interface Genre{
     name: string
@@ -11,7 +12,7 @@ export default function GenreList(){
     const[loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch("http://localhost:8080/genres")
+        fetch(`${baseUrl}/genres`)
         .then(res => {
             if(!res.ok) throw new Error(`Genre not found, ERROR ${res.status}`)
             return res.json()

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PartialMovieCard from "./PartialMovieCard";
 import { Link } from "react-router";
+import { baseUrl } from "../../config"
 
 interface Movie{
     id: number,
@@ -25,7 +26,7 @@ export default function MovieList(){
     const[loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch("http://localhost:8080/films")
+        fetch(`${baseUrl}/films`)
         .then(res => {
             if(!res.ok) throw new Error(`Movies not found, ERROR ${res.status}`)
             return res.json()

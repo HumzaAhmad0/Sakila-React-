@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import MovieCard from "./MovieCard"
 import { useParams } from "react-router"
+import { baseUrl } from "../../config"
 
 interface Movie{
     id: number,
@@ -19,11 +20,11 @@ interface Movie{
 }
 
 export default function MovieDetails(){
-       const [movie, setMovie] = useState<Movie|null>(null)
+        const [movie, setMovie] = useState<Movie|null>(null)
         const {id} = useParams()
     
         useEffect(()=>{
-            fetch(`http://localhost:8080/films/${id}`).then(res => res.json()).then(setMovie)
+            fetch(`${baseUrl}/films/${id}`).then(res => res.json()).then(setMovie)
         }, [id])
     
         console.log(movie)
