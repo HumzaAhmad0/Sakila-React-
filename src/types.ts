@@ -55,3 +55,10 @@ export type ActorData = Pick<Actor, "firstName" | "lastName" | "films">
 export type ActorSubmission = Pick<Actor, "firstName" | "lastName"> & {
     films: Film["id"][]
 }
+
+export type FilmData = Pick<Film, "title"| "description"| "releaseYear"| "language"| "movieLength"| "rating"| "cast"| "genre"| "score"| "rentalRate"| "rentalDuration">
+export type FilmSubmission = Pick<Film, "title" | "description" | "releaseYear" | "rating" | "movieLength" | "score" | "rentalRate" | "rentalDuration"> & {
+    language: number;  
+    actors: number[]; 
+    genre: number[];
+};

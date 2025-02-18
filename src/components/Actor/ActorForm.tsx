@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { ActorData, ActorSubmission, PartialFilmForActor } from "../types";
+import { ActorData, ActorSubmission, PartialFilmForActor } from "../../types";
 
 
 interface ActorFormProps{
-    initalData?: ActorData
+    initialData?: ActorData
     onSubmit: (data: ActorSubmission) => void
 }
 
 export default function ActorForm(props: ActorFormProps){
-    const [firstName, setFirstName] = useState(props.initalData?.firstName ?? "");
-    const [lastName, setLastName] = useState(props.initalData?.lastName ?? "");
-    const filmIds = props.initalData?.films.map((film:PartialFilmForActor) => film.id).join(", ")
+    const [firstName, setFirstName] = useState(props.initialData?.firstName ?? "");
+    const [lastName, setLastName] = useState(props.initialData?.lastName ?? "");
+    const filmIds = props.initialData?.films.map((film:PartialFilmForActor) => film.id).join(", ")
     const [movies, setMovies] = useState(filmIds??"");
 
     function handleSubmitActor(event: React.FormEvent<HTMLFormElement>){

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { baseUrl } from "../config";
-import { Actor, PartialFilmForActor } from "../types";
+import { Actor } from "../types";
+import ActorForm from "../components/Actor/ActorForm";
 
 
 
@@ -10,10 +11,7 @@ export default function UpdateActorPage(){
     const[error, setError] = useState<Error|null>(null)
     const[loading, setLoading] = useState(true)
 
-    const [firstName, setFirstName] = useState("");
     const [initalFName, setInitialFName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [movies, setMovies] = useState("");
 
     const {id} = useParams();
     const navigate = useNavigate();
@@ -26,10 +24,7 @@ export default function UpdateActorPage(){
         })
         .then((data)=>{
             setActor(data);
-            setFirstName(data.firstName);
             setInitialFName(data.fullName);
-            setLastName(data.lastName);
-            setMovies(data.films.map((film:PartialFilmForActor) => film.id).join(", "));
         })
         .catch(setError)
         .finally(()=>setLoading(false))
@@ -39,86 +34,39 @@ export default function UpdateActorPage(){
     if(error !== null) return <p>{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
 
-    const handleSubmitActor = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-    
-        // if (!firstName || !lastName || !movies) {
-        //   alert("Please fill out all fields.");
-        //   return;
-        // }
-    
-        const movieIds = movies
-          .split(",") 
-          .map((movie) => parseInt(movie.trim())) 
-          .filter((movie) => !isNaN(movie));
-    
-        const actorData = {
-          firstName,
-          lastName,
-          films: movieIds, 
-        };
-    
-        fetch(`${baseUrl}/actors/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json", 
-            },
-            body: JSON.stringify(actorData), 
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-              }
-              return response.json(); 
-            })
-            .then(() => {     
-              setFirstName("");
-              setLastName("");
-              setMovies("");
-              alert("Actor updated successfully!");
-              navigate(`/actor/${id}`);
-            })
-            .catch((error) => {
-              console.error("Error updated actor:", error);
-              alert("An error occurred while updating the actor.");
-            });
-      };
-    
+    const handleSubmitActor = (actorData: {
+      firstName: string
+      lastName: string
+      films: number[]
+    }) => {
+      fetch(`${baseUrl}/actors/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(actorData), 
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+          return response.json(); 
+        })
+        .then(() => {     
+          alert("Actor updated successfully!");
+          navigate(`/actor/${id}`);
+        })
+        .catch((error) => {
+          console.error("Error updated actor:", error);
+          alert("An error occurred while updating the actor.");
+        });
+    }
+        
     return(
-        <div>
+      <div>
         <h1>Edit Actor: {initalFName} {id}</h1>
-        <form onSubmit={handleSubmitActor}>
-            {/* <label> ID: <input
-            //   type="number"
-              value={id}
-              disabled
-              readOnly
-            />
-            </label>
-            <br /> */}
-            <label> First Name: <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            </label>
-            <br />
-            <label>Last Name:<input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                />
-            </label>
-            <br />
-            <label>Movies starred in (comma-separated IDs):<input
-                type="text"
-                value={movies}
-                onChange={(e) => setMovies(e.target.value)}
-                />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-        </form>
+        <ActorForm initialData={actor} onSubmit={handleSubmitActor}/> 
       </div>
     )
-}
+};
+    

@@ -1,15 +1,11 @@
 import { baseUrl } from "../config";
-import ActorForm from "../components/ActorForm";
+import ActorForm from "../components/Actor/ActorForm";
+import { useNavigate } from "react-router";
+import { ActorSubmission } from "../types";
 
 export default function CreateActorPage(){
-
-    const handleSubmitActor = (actorData: {
-            firstName: string
-            lastName: string
-            films: number[]
-        }) => {
-    
-
+    const navigate = useNavigate();
+    const handleSubmitActor = (actorData: ActorSubmission) => {
         fetch(`${baseUrl}/actors`, {
             method: "POST",
             headers: {
@@ -23,8 +19,10 @@ export default function CreateActorPage(){
               }
               return response.json(); 
             })
-            .then((result) => {
+            .then(() => {
               alert("Actor created successfully!");
+              navigate(`/actors`);
+
             })
             .catch((error) => {
               console.error("Error creating actor:", error);
