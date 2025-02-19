@@ -28,7 +28,11 @@ export default function MovieList(){
     return (
         <div className="cards-container-main">
             <div className="cards-container">
-            <Link className="" to="/createFilm">Click me</Link>
+                <div>
+                <h1>List of All Films</h1>
+                </div>
+                <Link className="" to="/createFilm">Create Film</Link>
+                <Link className="" to="/searchFilms">Search Film</Link>
                 {movies.map(movie =>
                 <PartialMovieCard key={movie.id} film={movie} />)}
             </div>

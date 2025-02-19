@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FilmData, FilmSubmission } from "../../types";
+import { Link } from "react-router";
 
 interface FilmFormProps {
     initialData?: FilmData;
@@ -128,6 +129,7 @@ export default function FilmForm(props: FilmFormProps) {
                     type="number"
                     min={0}
                     max={100}
+                    step="0.01"
                     value={score}
                     onChange={(e) => setScore(Number(e.target.value))}
                 />
@@ -138,8 +140,9 @@ export default function FilmForm(props: FilmFormProps) {
                     type="number"
                     min={0}
                     max={99.99}
+                    step="0.01"
                     value={rentalRate}
-                    onChange={(e) => setRentalRate(Number(e.target.value))}
+                    onChange={(e) => setRentalRate(parseFloat(e.target.value))}
                 />
             </label>
             <br />
@@ -149,11 +152,12 @@ export default function FilmForm(props: FilmFormProps) {
                     min={1}
                     max={255}
                     value={rentalDuration}
-                    onChange={(e) => setRentalDuration(Number(e.target.value))}
+                    onChange={(e) => setRentalDuration(parseFloat(e.target.value))}
                 />
             </label>
             <br />
             <button type="submit">Submit</button>
+            <Link to="/films">Go back</Link>
         </form>
     );
 }

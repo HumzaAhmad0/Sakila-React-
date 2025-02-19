@@ -51,6 +51,14 @@ export interface Actor{
     films: PartialFilmForActor[]
 }
 
+export interface SearchFilm{
+    id?: number,
+    title?: string,
+    rating?: string
+    genre?: string
+    releaseYear?: number
+}
+
 export type ActorData = Pick<Actor, "firstName" | "lastName" | "films">
 export type ActorSubmission = Pick<Actor, "firstName" | "lastName"> & {
     films: Film["id"][]

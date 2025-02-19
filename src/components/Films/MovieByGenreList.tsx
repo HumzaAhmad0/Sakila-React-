@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { Link, useParams } from "react-router"
 import PartialMovieCard from "./PartialMovieCard"
 import { baseUrl } from "../../config"
 import { Film } from "../../types"
@@ -15,6 +15,7 @@ export default function MovieByGenreList(){
         return (
             <div>
                 <h1>{genre} Movies</h1>
+                <Link to="/genres">Go back</Link>
                 <ul>
                 {movies.length > 0 ? (
                     movies.map((movie) => (

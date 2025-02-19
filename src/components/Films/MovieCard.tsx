@@ -43,6 +43,9 @@ export default function MovieCard(props: MovieCardProps){
             <h2>{score} /100</h2>   
             <Link to={`/updateFilm/${props.film.id}`}>Edit Film</Link>
             <button onClick={handleDelete}>Delete</button>
+            <br />
+            <Link to="/films">List of All Films</Link>
+
         </article>
     )
 }

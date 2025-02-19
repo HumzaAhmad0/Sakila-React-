@@ -16,6 +16,8 @@ import CreateActorPage from './pages/CreateActorPage.tsx'
 // import ReplaceActorPage from './pages/ReplaceActorPage.tsx'
 import UpdateActorPage from './pages/UpdateActorPage.tsx'
 import UpdateFilmPage from './pages/UpdateFilmPage.tsx'
+import SearchFilmPage from './pages/SearchFilmPage.tsx'
+import SearchActorPage from './pages/SearchActorPage.tsx'
 
 document.body.style.backgroundImage= `url(${backgroundImg})`
 
@@ -34,6 +36,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/updateFilm/:id" element = {<UpdateFilmPage/>}/>
         <Route path="/genre/:name" element ={<MovieByGenrePage/>}/>        
         <Route path="/film/:id" element ={<SpecificFilmPage/>}/>
+        <Route path="/searchFilms" element ={<SearchFilmPage/>}/>
+        <Route path="/searchActors" element ={<SearchActorPage/>}/>
         <Route path="/actor/:id" element ={<SpecificActorPage/>}/>
       </Routes>
     </BrowserRouter>

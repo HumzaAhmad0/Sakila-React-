@@ -27,7 +27,11 @@ export default function ActorList(){
     return (
         <div className="cards-container-main">
           <div className="cards-container">
-          <Link className="" to="/createActor">Click me</Link>
+            <div>
+            <h1>List of All Actors</h1>
+            </div>
+            <Link className="" to="/createActor">Create Actor</Link>
+            <Link className="" to="/searchActors">Search Actor</Link>
             {actors.map((actor) => (
               <PartialActorCard
                 key={actor.id}

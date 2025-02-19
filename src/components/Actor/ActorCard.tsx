@@ -37,6 +37,8 @@ export default function ActorCard(props: ActorCardProps){
             <p>Films: {films?.map(film=> <li key={film.id}>{film.title} {film.releaseYear}</li>)}</p>
             <Link to={`/updateActor/${id}`}>Update Actor</Link>
             <button onClick={handleDelete}>Delete</button>
+            <br />
+            <Link to="/actors">List of All Actors</Link>
         </article>
     )
 }

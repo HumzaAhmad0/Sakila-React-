@@ -6,7 +6,6 @@ import { FilmSubmission } from "../types";
 export default function CreateFilmPage() {
     const navigate = useNavigate();
     const handleSubmitFilm = (filmData: FilmSubmission) => {
-        console.log("Film Data being submitted:", filmData);
         fetch(`${baseUrl}/films`, {
             method: "POST",
             headers: {

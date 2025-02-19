@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ActorData, ActorSubmission, PartialFilmForActor } from "../../types";
+import { Link } from "react-router";
 
 
 interface ActorFormProps{
@@ -53,6 +54,7 @@ export default function ActorForm(props: ActorFormProps){
             </label>
             <br />
             <button type="submit">Submit</button>
+            <Link to="/actors">Go back</Link>
         </form>
     )
 }
