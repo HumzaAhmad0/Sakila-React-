@@ -20,8 +20,8 @@ export default function Top5Films(){
         )}
   
         <div className="sublight-container">
-          {movies.slice(1).map((movie) => (
-            <SubLight key={movie.id} film={movie}
+          {movies.slice(1).map((movie, index) => (
+            <SubLight key={movie.id} film={movie} index={index+1}
             />
           ))}
         </div>

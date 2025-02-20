@@ -4,11 +4,11 @@ import "./NavBar.css";
 export default function NavBar(){
     return(
         <nav>
-            <Link to="/" className="title">Sakila</Link>
+            <Link data-testid="navbar-home" to="/" className="title">Sakila</Link>
             <ul>
-                <li><NavLink to="/films">Films</NavLink></li>
-                <li><NavLink to="/actors">Actors</NavLink></li>
-                <li><NavLink to="/genres">Genres</NavLink></li>
+                <li data-testid="navbar-films"><NavLink to="/films">Films</NavLink></li>
+                <li data-testid="navbar-actors"><NavLink to="/actors">Actors</NavLink></li>
+                <li data-testid="navbar-genres"><NavLink to="/genres">Genres</NavLink></li>
                 <input></input>
             </ul>
         </nav>

@@ -20,7 +20,7 @@ export default function SpotLight(props: SpotLightProps) {
     >
       <Link to={`/film/${id}`}>
       <div className="spotlight-content">
-        <h3 className="spotlight-title">{title}</h3>
+        <h3 data-testid="spotlight-topfilm" className="spotlight-title" >{title}</h3>
         <p className="spotlight-description">{description}</p>
         <p className="spotlight-release-year">Release Year: {releaseYear}</p>
         <div className="spotlight-score">{score}/100</div>

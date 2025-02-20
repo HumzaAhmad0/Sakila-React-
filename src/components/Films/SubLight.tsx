@@ -5,10 +5,11 @@ import { PartialFilm } from '../../types';
 
 interface SubLightProps {
     film: PartialFilm
+    index: number
   }
   
   export default function SubLight(props: SubLightProps) {
-    const { id, title, releaseYear, score } = props.film;
+    const { id, title, releaseYear, score} = props.film;
     const backgroundImageUrl = `https://picsum.photos/seed/${id}/300/200`;
   
     return (
@@ -20,7 +21,7 @@ interface SubLightProps {
       >
         <Link to={`/film/${id}`}>
         <div className="sublight-content" >
-          <h4>{title}</h4>
+          <h4 data-testid={`sublight-${props.index}`}>{title}</h4>
           <p>{releaseYear}</p>
           <p className='sublight-score'>{score}/100</p>
         </div>

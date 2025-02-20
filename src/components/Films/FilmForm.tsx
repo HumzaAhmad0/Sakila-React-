@@ -30,8 +30,6 @@ export default function FilmForm(props: FilmFormProps) {
 
         const actorIds = actors.split(",").map(actor => parseInt(actor.trim())).filter(id => !isNaN(id));
         const genreIds = genres.split(",").map(genre => parseInt(genre.trim())).filter(id => !isNaN(id));
-        console.log("Actors (IDs):", actorIds);
-        console.log("Genres (IDs):", genreIds);
 
         props.onSubmit({
             title,
