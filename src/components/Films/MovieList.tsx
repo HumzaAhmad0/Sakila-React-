@@ -33,8 +33,10 @@ export default function MovieList(){
                 </div>
                 <Link data-testid="createfilm-link" className="" to="/createFilm">Create Film</Link>
                 <Link data-testid="searchfilm-link" className="" to="/searchFilms">Search Film</Link>
-                {movies.map(movie =>
-                <PartialMovieCard key={movie.id} film={movie} />)}
+                <div data-testid="list-of-films">
+                {movies.map((movie, index) =>
+                <PartialMovieCard key={movie.id} film={movie} index={index+1}/>)}
+                </div>
             </div>
         </div>
     )

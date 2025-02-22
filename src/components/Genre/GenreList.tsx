@@ -23,7 +23,7 @@ export default function GenreList(){
     if(error !== null) return <p>{error.message}</p>
     if(genres === null) return <p>failed to load actor</p>
 
-    return <ul>
-        {genres.map(genre => <GenreCard key={genre.name} name={genre.name}/>)}
-    </ul>
+    return <div data-testid="list-of-genres">
+        {genres.map((genre, index )=> <GenreCard key={genre.name} name={genre.name} index={index+1}/>)}
+    </div>
 }

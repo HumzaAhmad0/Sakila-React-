@@ -20,10 +20,10 @@ interface SubLightProps {
         }}
       >
         <Link to={`/film/${id}`}>
-        <div className="sublight-content" >
-          <h4 data-testid={`sublight-${props.index}`}>{title}</h4>
-          <p>{releaseYear}</p>
-          <p className='sublight-score'>{score}/100</p>
+        <div data-testid={`sublight-${props.index}`} className="sublight-content" >
+          <h4 data-testid={`sublight-title-${props.index}`}>{title}</h4>
+          <p data-testid={`sublight-year-${props.index}`}>{releaseYear}</p>
+          <p data-testid={`sublight-score-${props.index}`} className='sublight-score'>{score}/100</p>
         </div>
         </Link>
       </div>

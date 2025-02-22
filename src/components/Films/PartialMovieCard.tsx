@@ -4,6 +4,7 @@ import { PartialFilm } from "../../types"
 
 interface PartialMovieCardProps{
     film: PartialFilm
+    index: number
 }
 
 export default function PartialMovieCard(props: PartialMovieCardProps){
@@ -12,21 +13,21 @@ export default function PartialMovieCard(props: PartialMovieCardProps){
     if (score != undefined){
         return(
             <article className="card">
-            <h1 className="title">{title}</h1>
-            <h2 className="year">{releaseYear}</h2>
-            <p className="desc">{description}</p>
-            <h2 className="score">{score} /100</h2>
-            <Link className="more-info" to={`/film/${id}`}>More Info</Link>
+            <h1 data-testid={`movielist-title-${props.index}`} className="title">{title}</h1>
+            <h2 data-testid={`movielist-year-${props.index}`} className="year">{releaseYear}</h2>
+            <p data-testid={`movielist-desc-${props.index}`} className="desc">{description}</p>
+            <h2 data-testid={`movielist-score-${props.index}`} className="score">{score} /100</h2>
+            <Link data-testid={`movielist-moreinfo-${props.index}`} className="more-info" to={`/film/${id}`}>More Info</Link>
         </article>
         )
     }
     
     return(
         <article className="card">
-            <h1 className="title">{title}</h1>
-            <h2 className="year">{releaseYear}</h2>
-            <p className="desc">{description}</p>
-            <Link className="more-info" to={`/film/${id}`}>More Info</Link>
+            <h1 data-testid={`movielist-title-${props.index}`} className="title">{title}</h1>
+            <h2 data-testid={`movielist-year-${props.index}`} className="year">{releaseYear}</h2>
+            <p data-testid={`movielist-desc-${props.index}`} className="desc">{description}</p>
+            <Link data-testid={`movielist-moreinfo-${props.index}`} className="more-info" to={`/film/${id}`}>More Info</Link>
         </article>
     )
 }

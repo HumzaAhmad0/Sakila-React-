@@ -30,14 +30,17 @@ export default function ActorList(){
             <div>
             <h1>List of All Actors</h1>
             </div>
-            <Link className="" to="/createActor">Create Actor</Link>
-            <Link className="" to="/searchActors">Search Actor</Link>
-            {actors.map((actor) => (
+            <Link data-testid="createactor-link" className="" to="/createActor">Create Actor</Link>
+            <Link data-testid="searchactor-link" className="" to="/searchActors">Search Actor</Link>
+            <div data-testid="list-of-actors">
+            {actors.map((actor, index) => (
               <PartialActorCard
                 key={actor.id}
                 actor={actor}
+                index={index+1}
               />
             ))}
+            </div>
           </div>
         </div>
       )

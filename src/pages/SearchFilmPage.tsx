@@ -54,7 +54,9 @@ export default function SearchFilmPage() {
                 <label>
                     ID: <input
                         type="number"
-                        onChange={(e) => setId(Number(e.target.value))}
+                        value={id || ""} // Set the value to id or empty string
+                        onChange={(e) => setId(e.target.value ? Number(e.target.value) : undefined)} // Set ID to undefined if input is empty
+                        disabled={title !== "" || genre !== "" || rating !== "" || releaseYear !== undefined || sortByScore !== null} // Disable ID input if any other field is filled
                     />
                 </label>
                 <br />
@@ -62,14 +64,20 @@ export default function SearchFilmPage() {
                 <label>
                     Title: <input
                         type="text"
+                        value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        disabled={id !== undefined} // Disable Title if ID is set
                     />
                 </label>
                 <br />
                 
                 <label>
                     Genre:
-                    <select onChange={(e) => setGenre(e.target.value)}>
+                    <select
+                        value={genre}
+                        onChange={(e) => setGenre(e.target.value)}
+                        disabled={id !== undefined} // Disable Genre if ID is set
+                    >
                         <option value="">--Select Genre--</option>
                         <option value="Action">Action</option>
                         <option value="Animation">Animation</option>
@@ -93,7 +101,11 @@ export default function SearchFilmPage() {
                 
                 <label>
                     Rating:
-                    <select onChange={(e) => setRating(e.target.value)}>
+                    <select
+                        value={rating}
+                        onChange={(e) => setRating(e.target.value)}
+                        disabled={id !== undefined} // Disable Rating if ID is set
+                    >
                         <option value="">--Select Rating--</option>
                         <option value="G">G</option>
                         <option value="PG">PG</option>
@@ -107,7 +119,10 @@ export default function SearchFilmPage() {
                 <label>
                     Release Year: <input
                         type="number"
-                        onChange={(e) => setReleaseYear(Number(e.target.value))}
+                        value={releaseYear || ""}
+                        // onChange={(e) => setReleaseYear(Number(e.target.value))}
+                        onChange={(e) => setReleaseYear(e.target.value ? Number(e.target.value) : undefined)}
+                        disabled={id !== undefined} // Disable Release Year if ID is set
                     />
                 </label>
                 <br />
@@ -115,7 +130,9 @@ export default function SearchFilmPage() {
                 <label>
                     Sort by Score:
                     <select
+                        value={sortByScore || ""}
                         onChange={(e) => setSortByScore(e.target.value === "" ? null : Number(e.target.value))}
+                        disabled={id !== undefined} // Disable Sort by Score if ID is set
                     >
                         <option value="">None</option>
                         <option value="1">1</option>
@@ -138,8 +155,8 @@ export default function SearchFilmPage() {
                 <div className="cards-container-main">
                     <div className="cards-container">
                     <div><h1>List of Filtered Films</h1></div>
-                        {movies.map((movie) => (
-                            <PartialMovieCard key={movie.id} film={movie} />
+                        {movies.map((movie, index) => (
+                            <PartialMovieCard key={movie.id} film={movie} index={index+1}/>
                         ))}
                     </div>
                 </div>

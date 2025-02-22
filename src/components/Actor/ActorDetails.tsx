@@ -27,8 +27,8 @@ export default function ActorDetails(){
     if(error !== null) return <p>{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
 
-    return <ul>
+    return <div>
         {actor && <ActorCard actor={actor} />}
-    </ul>
+    </div>
 
 }
