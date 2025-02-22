@@ -20,13 +20,6 @@ async function DeleteActor(id: number){
 
 export default function SearchedActorCard(props: SearchedActorCardProps){
     const {id, firstName, lastName, fullName, films} = props.actor;
-    const navigate = useNavigate();
- 
-    const handleDelete = ()=>{
-        DeleteActor(id).then( () =>{
-            navigate("/actors")
-        })
-    }
 
     return(
         <article data-testid="searched-actor-article">
