@@ -1,21 +1,7 @@
-import { Link, useNavigate } from "react-router"
-import { baseUrl } from "../../config"
 import { Actor } from "../../types";
 
 interface SearchedActorCardProps{
     actor: Actor
-}
-
-async function DeleteActor(id: number){
-    return fetch(`${baseUrl}/actors/${id}`, {
-        method: 'DELETE',
-    })
-    .then(response => {
-        if (response.ok) {
-        } else {
-        }
-    })
-    .catch(error => console.error("Error:", error));
 }
 
 export default function SearchedActorCard(props: SearchedActorCardProps){
