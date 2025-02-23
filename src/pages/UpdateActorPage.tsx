@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, Link } from "react-router";
 import { baseUrl } from "../config";
 import { Actor } from "../types";
 import ActorForm from "../components/Actor/ActorForm";
@@ -31,8 +31,12 @@ export default function UpdateActorPage(){
     }, [id])
 
     if(loading) return <p>loading...</p>
-    if(error !== null) return <p>{error.message}</p>
+    if(error !== null) return <p data-testid="specific-actor-not-found">{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
+
+    const handleReset = () => {
+      window.location.reload();
+  };
 
     const handleSubmitActor = (actorData: {
       firstName: string
@@ -64,8 +68,9 @@ export default function UpdateActorPage(){
         
     return(
       <div>
-        <h1>Edit Actor: {initalFName} {id}</h1>
+        <h1 data-testid="update-actor-heading">Edit Actor: {initalFName} {id}</h1>
         <ActorForm initialData={actor} onSubmit={handleSubmitActor}/> 
+        <button data-testid="reset-update-actor-page-button" onClick={handleReset}>reset</button>
       </div>
     )
 };

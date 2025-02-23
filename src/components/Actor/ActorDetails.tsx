@@ -24,7 +24,7 @@ export default function ActorDetails(){
     }, [id])
 
     if(loading) return <p>loading...</p>
-    if(error !== null) return <p>{error.message}</p>
+    if(error !== null) return <p data-testid="specific-actor-not-found">{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
 
     return <div>

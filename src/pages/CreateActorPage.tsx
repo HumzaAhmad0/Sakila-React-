@@ -31,7 +31,7 @@ export default function CreateActorPage(){
       };
     
     return(
-        <div>
+      <div>
         <h1>Create Actor</h1>
         <ActorForm onSubmit={handleSubmitActor}/>
       </div>
