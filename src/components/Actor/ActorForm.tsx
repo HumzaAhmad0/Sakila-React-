@@ -22,6 +22,21 @@ export default function ActorForm(props: ActorFormProps){
           return;
         }
 
+        if (firstName.length > 45 && lastName.length > 45) {
+            alert("First and Last name fields are limited to 45 characters.");
+            return;
+        }
+    
+        if (firstName.length > 45) {
+            alert("First name is limited to 45 characters.");
+            return;
+        }
+    
+        if (lastName.length > 45) {
+            alert("Last name is limited to 45 characters.");
+            return;
+        }
+
         const films = movies
         .split(",") 
         .map((movie) => parseInt(movie.trim())) 
@@ -33,13 +48,15 @@ export default function ActorForm(props: ActorFormProps){
     return(
         <form onSubmit={handleSubmitActor}>
             <label> First Name: <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+                data-testid="actor-form-first-name"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
             />
             </label>
             <br />
             <label>Last Name:<input
+                data-testid="actor-form-last-name"
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -47,14 +64,15 @@ export default function ActorForm(props: ActorFormProps){
             </label>
             <br />
             <label>Movies starred in (comma-separated IDs):<input
+                data-testid="actor-form-film-list"
                 type="text"
                 value={movies}
                 onChange={(e) => setMovies(e.target.value)}
                 />
             </label>
             <br />
-            <button type="submit">Submit</button>
-            <Link to="/actors">Go back</Link>
+            <button data-testid="actor-form-submit-button" type="submit">Submit</button>
+            <Link data-testid="actor-form-back-button" to="/actors">Go back</Link>
         </form>
     )
 }
