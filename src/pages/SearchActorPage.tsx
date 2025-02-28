@@ -11,9 +11,7 @@
 
         const [actors, setActors] = useState<PartialActor[]>([])
         const[actor, setActor] = useState<Actor|null>(null)
-        
         const[loading, setLoading] = useState(false)
-
         const [error, setError] = useState<string | null>(null);
 
         function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>){
@@ -25,7 +23,6 @@
             setLoading(true);
         
             if (id) {
-                // navigate(`/actor/${id}`);
                 fetch(`${baseUrl}/actors/${id}`)
                 .then(res => {
                 if (!res.ok) throw new Error(`Actor not found, ERROR ${res.status}`)
@@ -54,10 +51,7 @@
                     })
                     .finally(()=> setLoading(false));
             }
-
-
         }
-
 
         return(
             <div>
@@ -80,6 +74,7 @@
                         />
                     </label>
                     <br />
+                    
                     <button type="submit" data-testid="actor-search-submit-button">Search</button>
                     <Link data-testid="actor-search-go-back" to="/actors">Go back</Link>
                 </form>
@@ -102,9 +97,8 @@
                                 ))}
                                 </div>
                             </div>
-                            </div>
+                    </div>
                 )}
-            
             </div>
         )
     }

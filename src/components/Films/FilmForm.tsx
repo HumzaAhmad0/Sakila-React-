@@ -8,12 +8,13 @@ interface FilmFormProps {
 }
 
 export default function FilmForm(props: FilmFormProps) {
+    const currentYear = new Date().getFullYear();
     const [title, setTitle] = useState(props.initialData?.title ?? "");
     const [description, setDescription] = useState(props.initialData?.description ?? "");
-    const [releaseYear, setReleaseYear] = useState<number>(props.initialData?.releaseYear ?? 0);
+    const [releaseYear, setReleaseYear] = useState<number>(props.initialData?.releaseYear ?? currentYear);
     const [language, setLanguage] = useState<number>(props.initialData?.language.id ?? 1);
     const [movieLength, setMovieLength] = useState<number>(props.initialData?.movieLength ?? 1);
-    const [rating, setRating] = useState(props.initialData?.rating ?? "");
+    const [rating, setRating] = useState(props.initialData?.rating ?? "G");
     const [actors, setActors] = useState<string>(props.initialData?.cast.map(actor => actor.id).join(", ") ?? "");
     const [genres, setGenres] = useState<string>(props.initialData?.genre.map(genre => genre.id).join(", ") ?? "");
     const [score, setScore] = useState<number>(props.initialData?.score ?? 0);
@@ -23,13 +24,61 @@ export default function FilmForm(props: FilmFormProps) {
     function handleSubmitFilm(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (!title || !description || !releaseYear || !movieLength || !rating || !actors || !genres || !score || !rentalRate || !rentalDuration || !language) {
+        if (title === "" && description === "" && rating === "" && actors === "" && genres === "") {
             alert("Please fill out all fields.");
             return;
         }
 
-        const actorIds = actors.split(",").map(actor => parseInt(actor.trim())).filter(id => !isNaN(id));
-        const genreIds = genres.split(",").map(genre => parseInt(genre.trim())).filter(id => !isNaN(id));
+        if (title === "" && description === "" && actors === "" && genres === "") {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        if (title.length > 128) {
+            alert("Title is limited to 128 characters.");
+            return;
+        }
+
+        if (releaseYear < 1901 || releaseYear > 2155) {
+            alert("Release Year has to be within the range of 1901-2155");
+            return;
+        }
+
+        if (title === "") {
+            alert("Please fill out the title field.");
+            return;
+        }
+
+        if (description === "") {
+            alert("Please fill out the description field.");
+            return;
+        }
+
+        if (actors === "") {
+            alert("Please fill out the actors field.");
+            return;
+        }
+
+        
+        if (genres === "") {
+            alert("Please fill out the genres field.");
+            return;
+        }
+
+
+
+
+        const actorIds = actors.split(",")
+        .map(actor => parseInt(actor.trim()))
+        .filter(id => !isNaN(id));
+        const genreIds = genres.split(",")
+        .map(genre => parseInt(genre.trim()))
+        .filter(id => !isNaN(id));
+
+        if (genreIds.some(id => id < 1 || id > 16)) {
+            alert("Genre IDs must be between 1 and 16.");
+            return;
+        }
 
         props.onSubmit({
             title,
@@ -129,7 +178,7 @@ export default function FilmForm(props: FilmFormProps) {
                     max={100}
                     step="0.01"
                     value={score}
-                    onChange={(e) => setScore(Number(e.target.value))}
+                    onChange={(e) => setScore(parseFloat(e.target.value))}
                 />
             </label>
             <br />
@@ -150,7 +199,7 @@ export default function FilmForm(props: FilmFormProps) {
                     min={1}
                     max={255}
                     value={rentalDuration}
-                    onChange={(e) => setRentalDuration(parseFloat(e.target.value))}
+                    onChange={(e) => setRentalDuration(Number(e.target.value))}
                 />
             </label>
             <br />

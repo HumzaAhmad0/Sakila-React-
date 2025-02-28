@@ -9,7 +9,7 @@ export default function NavBar(){
                 <li data-testid="navbar-films"><NavLink to="/films">Films</NavLink></li>
                 <li data-testid="navbar-actors"><NavLink to="/actors">Actors</NavLink></li>
                 <li data-testid="navbar-genres"><NavLink to="/genres">Genres</NavLink></li>
-                <input></input>
+                {/* <input></input> */}
             </ul>
         </nav>
     )

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Film } from "../types";
 import { baseUrl } from "../config";
 import PartialMovieCard from "../components/Films/PartialMovieCard";
+import SearchedMovieCard from "../components/Films/SearchedMovieCard";
 
 export default function SearchFilmPage() {
     const [id, setId] = useState<number | undefined>(undefined);
@@ -13,17 +14,29 @@ export default function SearchFilmPage() {
     const [sortByScore, setSortByScore] = useState<number|null>(null);
 
     const [movies, setMovies] = useState<Film[]>([]); 
+    const [movie, setMovie] = useState<Film|null>(null); 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const navigate = useNavigate(); 
-
     function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
+        setMovie(null)
+        setMovies([])
+        setError(null)
+
         setLoading(true);
 
         if (id) {
-            navigate(`/film/${id}`);
+            fetch(`${baseUrl}/films/${id}`)
+            .then(res => {
+                if (!res.ok) throw new Error(`Film not found, ERROR ${res.status}`)
+                return res.json()
+                })
+            .then(setMovie)
+            .catch((error)=>{
+                setError(error.message);
+            })
+            .finally(()=>setLoading(false))
         } else {
             let queryString = "/films?";
             if (title) queryString += `title=${title}&`;
@@ -53,20 +66,22 @@ export default function SearchFilmPage() {
             <form onSubmit={handleSubmitSearch}>
                 <label>
                     ID: <input
-                        type="number"
-                        value={id || ""} // Set the value to id or empty string
-                        onChange={(e) => setId(e.target.value ? Number(e.target.value) : undefined)} // Set ID to undefined if input is empty
-                        disabled={title !== "" || genre !== "" || rating !== "" || releaseYear !== undefined || sortByScore !== null} // Disable ID input if any other field is filled
+                    data-testid="film-search-id"
+                    type="number"
+                    value={id || ""} 
+                    onChange={(e) => setId(e.target.value ? Number(e.target.value) : undefined)} // Set ID to undefined if input is empty
+                    disabled={title !== "" || genre !== "" || rating !== "" || releaseYear !== undefined || sortByScore !== null} // Disable ID input if any other field is filled
                     />
                 </label>
                 <br />
                 
                 <label>
                     Title: <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        disabled={id !== undefined} // Disable Title if ID is set
+                    data-testid="film-search-title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    disabled={id !== undefined}
                     />
                 </label>
                 <br />
@@ -74,9 +89,10 @@ export default function SearchFilmPage() {
                 <label>
                     Genre:
                     <select
+                        data-testid="film-search-genre"
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
-                        disabled={id !== undefined} // Disable Genre if ID is set
+                        disabled={id !== undefined} 
                     >
                         <option value="">--Select Genre--</option>
                         <option value="Action">Action</option>
@@ -102,9 +118,10 @@ export default function SearchFilmPage() {
                 <label>
                     Rating:
                     <select
+                        data-testid="film-search-rating"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
-                        disabled={id !== undefined} // Disable Rating if ID is set
+                        disabled={id !== undefined} 
                     >
                         <option value="">--Select Rating--</option>
                         <option value="G">G</option>
@@ -118,11 +135,11 @@ export default function SearchFilmPage() {
                 
                 <label>
                     Release Year: <input
+                        data-testid="film-search-release-year"
                         type="number"
                         value={releaseYear || ""}
-                        // onChange={(e) => setReleaseYear(Number(e.target.value))}
                         onChange={(e) => setReleaseYear(e.target.value ? Number(e.target.value) : undefined)}
-                        disabled={id !== undefined} // Disable Release Year if ID is set
+                        disabled={id !== undefined} 
                     />
                 </label>
                 <br />
@@ -130,9 +147,10 @@ export default function SearchFilmPage() {
                 <label>
                     Sort by Score:
                     <select
+                        data-testid="film-search-score"
                         value={sortByScore || ""}
                         onChange={(e) => setSortByScore(e.target.value === "" ? null : Number(e.target.value))}
-                        disabled={id !== undefined} // Disable Sort by Score if ID is set
+                        disabled={id !== undefined} 
                     >
                         <option value="">None</option>
                         <option value="1">1</option>
@@ -141,15 +159,17 @@ export default function SearchFilmPage() {
                 </label>
                 <br />
                 
-                <button type="submit">Search</button>
-                <Link to="/films">Go back</Link>
+                <button data-testid="film-search-submit-button" type="submit">Search</button>
+                <Link data-testid="film-search-go-back" to="/films">Go back</Link>
             </form>
 
             {loading && <p>Loading...</p>}
 
-            {error && <p>{error}</p>}
+            {error && <p data-testid="film-search-error-message">{error}</p>}
 
-            {movies.length === 0 && !loading && !error && <h1>No results found</h1>}
+            {movies.length === 0 && movie === null && !loading && !error && <h1 data-testid="film-search-no-results">No results found</h1>}
+
+            {movie && <SearchedMovieCard data-testid="film-by-id-result" film={movie} />}
 
             {movies.length > 0 && (
                 <div className="cards-container-main">

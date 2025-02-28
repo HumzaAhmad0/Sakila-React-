@@ -25,7 +25,7 @@ export default function CreateFilmPage() {
         })
         .catch((error) => {
             console.error("Error creating film:", error);
-            alert("An error occurred while creating the film.");
+            alert("An error occurred while creating the film." + error);
         });
     };
 
