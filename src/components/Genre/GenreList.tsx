@@ -19,11 +19,27 @@ export default function GenreList(){
         .finally(()=>setLoading(false))
     }, [])
 
-    if(loading) return <p>loading...</p>
+    if(loading) return (
+        // <p>loading...</p>
+        <div className="header">
+                        <h1 className="titleMain">L o a d i n g  .  .  .</h1>
+        </div>
+        )
     if(error !== null) return <p>{error.message}</p>
     if(genres === null) return <p>failed to load actor</p>
 
-    return <div data-testid="list-of-genres">
-        {genres.map((genre, index )=> <GenreCard key={genre.name} name={genre.name} index={index+1}/>)}
-    </div>
+    return(
+        <div className="cards-container-main">
+            <div className="cards-container">
+                <div className="header">
+                    <h1 className="titleMain">List of All Genres</h1>
+                </div>
+                <div className="actors-list" data-testid="list-of-genres">
+                    {genres.map((genre, index) => 
+                        <GenreCard key={genre.name} name={genre.name} index={index+1} />
+                    )}
+                </div>
+            </div>
+        </div>
+)
 }

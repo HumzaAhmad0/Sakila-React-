@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router"
 import { Film } from "../../types"
 import { baseUrl } from "../../config";
-
+import './MovieCard.css'
 interface MovieCardProps{
     film: Film
 }
@@ -30,22 +30,31 @@ export default function MovieCard(props: MovieCardProps){
     }
     
     return(
-        <article>
-            <h1 data-testid="specific-film-title">{title}</h1>
-            <h2 data-testid="specific-film-release-year">{releaseYear}</h2>
-            <p data-testid="specific-film-description">{description}</p>
-            <p data-testid="specific-film-language">Language: {language.name}</p>
-            <p data-testid="specific-film-movie-length">Run Time: {Math.floor(movieLength/60)}h {movieLength%60}m</p>
-            <p data-testid="specific-film-rating">Rated: {rating}</p>
-            <ul>Cast: {cast?.map(actor=> <li data-testid="specific-film-cast-name" key={actor.id}>{actor.fullName}</li>)}</ul>
-            <p>{genre?.map(genre=> <li data-testid="specific-film-genre" key={genre.name}>Genre: {genre.name}</li>)}</p>
-            <p data-testid="specific-film-rental-rate">Rental Rate: {rental}</p>
-            <h2 data-testid="specific-film-score">{score} /100</h2>   
-            <Link data-testid="specific-film-update-link" to={`/updateFilm/${props.film.id}`}>Edit Film</Link>
-            <button data-testid="specific-film-delete-button" onClick={handleDelete}>Delete</button>
-            <br />
-            <Link data-testid="specific-film-all-films-link" to="/films">List of All Films</Link>
-
-        </article>
+        <div className="movie-card-container">
+            <div className="movie-card">
+                <h1>{title}</h1>
+                <h2>{releaseYear}</h2>
+                <p>{description}</p>
+                <p><strong>Language:</strong> {language.name}</p>
+                <p><strong>Run Time:</strong> {Math.floor(movieLength / 60)}h {movieLength % 60}m</p>
+                <p><strong>Rated:</strong> {rating}</p>
+                <div className="cast-container">
+                    <h3 className="cast-title"><strong>Cast</strong></h3>
+                    <ul className="cast-list">
+                        {cast?.map(actor => (
+                            <li key={actor.id}>{actor.fullName}</li>
+                        ))}
+                    </ul>
+                </div>
+                <p><strong>Genre:</strong> {genre?.map(g => <span key={g.name}>{g.name}</span>)}</p>
+                <p><strong>Rental Rate:</strong> {rental}</p>
+                <h2 className="score">{score} / 100</h2>
+            </div>
+            <div className="button-container">
+            <Link to="/films" className="more-info">List of All Films</Link>
+                <Link to={`/updateFilm/${id}`} className="more-info">Edit Film</Link>
+                <button onClick={handleDelete} className="delete-btn">Delete</button>
+            </div>
+        </div>
     )
 }

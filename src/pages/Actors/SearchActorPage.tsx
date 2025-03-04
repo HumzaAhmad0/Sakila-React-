@@ -1,9 +1,9 @@
     import { useState } from "react";
-    import { Actor, PartialActor } from "../types";
+    import { Actor, PartialActor } from "../../types";
     import { Link } from "react-router";
-    import { baseUrl } from "../config";
-    import PartialActorCard from "../components/Actor/PartialActorCard";
-    import SearchedActorCard from "../components/Actor/SearchedActorCard";
+    import { baseUrl } from "../../config";
+    import PartialActorCard from "../../components/Actor/PartialActorCard";
+    import SearchedActorCard from "../../components/Actor/SearchedActorCard";
 
     export default function SearchActorPage(){
         const [id, setId] = useState<number | undefined>(undefined);
@@ -55,8 +55,12 @@
 
         return(
             <div>
-                <h1>Actor Search</h1>
-                <form onSubmit={handleSubmitSearch}>
+                <div className="header">
+                <h1 className="titleMain">Search Actor</h1>
+                </div>
+                <div>
+                <div className="form-container">
+                <form onSubmit={handleSubmitSearch} className="form-card">
                 <label> ID: <input
                         data-testid="actor-search-id"
                         type="number"
@@ -75,23 +79,28 @@
                     </label>
                     <br />
                     
-                    <button type="submit" data-testid="actor-search-submit-button">Search</button>
-                    <Link data-testid="actor-search-go-back" to="/actors">Go back</Link>
+                    <button className="submit-btn" type="submit" data-testid="actor-search-submit-button">Search</button>
+                    <Link className="back-link" data-testid="actor-search-go-back" to="/actors">Go back</Link>
                 </form>
+                </div>
+                </div>
+                
 
-                {loading && <p data-testid="actor-search-loading">Loading...</p>}
+                {loading && <h1  className="titleMain" data-testid="actor-search-loading">Loading...</h1>}
 
-                {error && <p data-testid="actor-search-error-message">{error}</p>}
+                {error && <h1  className="titleMain" data-testid="actor-search-error-message">{error}</h1>}
 
-                {actors.length === 0 && actor === null && !loading && !error && <h1 data-testid="actor-search-no-results">No results found</h1>}
+                {actors.length === 0 && actor === null && !loading && !error && <h1 className="titleMain" data-testid="actor-search-no-results">No results found</h1>}
 
                 {actor && <SearchedActorCard data-testid="actor-by-id-result" actor={actor} />}
 
                 {actors.length > 0 &&(
                     <div className="cards-container-main">
                             <div className="cards-container">
-                                <div><h1>List of Filtered Actors</h1></div>
-                                <div data-testid="list-of-filtered-actors">
+                                <div className="header">
+                                <h1 className="titleMain">List of Filtered Actors</h1>
+                                </div>
+                                <div className="actors-list" data-testid="list-of-filtered-actors">
                                 {actors.map((actor, index) => (
                                 <PartialActorCard key={actor.id} actor={actor} index={index+1} />
                                 ))}

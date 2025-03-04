@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
-import FilmForm from "../components/Films/FilmForm";
-import { baseUrl } from "../config";
-import { FilmSubmission } from "../types";
+import FilmForm from "../../components/Films/FilmForm";
+import { baseUrl } from "../../config";
+import { FilmSubmission } from "../../types";
 
 export default function CreateFilmPage() {
     const navigate = useNavigate();
@@ -30,9 +30,13 @@ export default function CreateFilmPage() {
     };
 
     return (
-        <div>
-            <h1>Create Film</h1>
-            <FilmForm onSubmit={handleSubmitFilm} />
+        <div className="cards-container">
+            <div className="header">
+                <h1 className="titleMain">Create Film</h1>
+            </div>
+            <div>
+                <FilmForm onSubmit={handleSubmitFilm} />
+            </div>
         </div>
     );
 }

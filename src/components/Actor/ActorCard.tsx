@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router"
 import { baseUrl } from "../../config"
 import { Actor } from "../../types";
+import './ActorCard.css'
 
 interface ActorCardProps{
     actor: Actor
@@ -19,7 +20,8 @@ async function DeleteActor(id: number){
 }
 
 export default function ActorCard(props: ActorCardProps){
-    const {id, firstName, lastName, fullName, films} = props.actor;
+    // const {id, firstName, lastName, fullName, films} = props.actor;
+    const {id, fullName, films} = props.actor;
     const navigate = useNavigate();
  
     const handleDelete = ()=>{
@@ -29,16 +31,27 @@ export default function ActorCard(props: ActorCardProps){
     }
 
     return(
-        <article data-testid="specific-actor-article">
-            <h1 data-testid="specific-actor-id">{id}</h1>
-            <p data-testid="specific-actor-first-name">{firstName}</p>
-            <p data-testid="specific-actor-last-name">{lastName}</p>
-            <p data-testid="specific-actor-full-name">{fullName}</p>
-            <p>Films: {films?.map(film=> <li data-testid="specific-actor-film-titles" key={film.id}>{film.title} {film.releaseYear}</li>)}</p>
-            <Link data-testid="specific-actor-update-link" to={`/updateActor/${id}`}>Update Actor</Link>
-            <button data-testid="specific-actor-delete-button" onClick={handleDelete}>Delete</button>
-            <br />
-            <Link data-testid="specific-actor-all-actors-link" to="/actors">List of All Actors</Link>
-        </article>
+        <div className="actor-card-container" data-testid="specific-actor-article">
+            <div className="actor-card">
+                <h1 className="actor-id" data-testid="specific-actor-id">ID: {id}</h1>
+                {/* <p className="actor-first-name" data-testid="specific-actor-first-name">{firstName}</p>
+                <p className="actor-last-name" data-testid="specific-actor-last-name">{lastName}</p> */}
+                <h2 className="actor-full-name" data-testid="specific-actor-full-name">{fullName}</h2>
+                <p className="actor-first-name"><strong> Films:</strong></p>
+                <ul className="actor-film-list">
+                    {films?.map(film => (
+                    <li key={film.id} className="actor-film" data-testid="specific-actor-film-titles">
+                        {film.title} {film.releaseYear}
+                    </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="button-container">
+                <Link to="/actors" className="more-info" data-testid="actor-all-actors-link">List of All Actors</Link>
+                <Link to={`/updateActor/${id}`} className="more-info" data-testid="specific-actor-update-link">Update Actor</Link>
+                <button onClick={handleDelete} className="delete-btn" data-testid="specific-actor-delete-button">Delete Actor</button>
+            </div>
+        </div>
+
     )
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Actor } from "../../types";
 
 interface SearchedActorCardProps{
@@ -5,15 +6,26 @@ interface SearchedActorCardProps{
 }
 
 export default function SearchedActorCard(props: SearchedActorCardProps){
-    const {id, firstName, lastName, fullName, films} = props.actor;
+    // const {id, firstName, lastName, fullName, films} = props.actor;
+    const {id, fullName, films} = props.actor;
 
     return(
-        <article data-testid="searched-actor-article">
-            <h1 data-testid="searched-actor-id">{id}</h1>
-            <p data-testid="searched-actor-first-name">{firstName}</p>
-            <p data-testid="searched-actor-last-name">{lastName}</p>
-            <p data-testid="searched-actor-full-name">{fullName}</p>
-            <p>Films: {films?.map(film=> <li data-testid="searched-actor-film-titles" key={film.id}>{film.title} {film.releaseYear}</li>)}</p>
-        </article>
+        <div className="actor-card-container" data-testid="searched-actor-article">
+            <div className="actor-card">
+            <h1 className="actor-id" data-testid="searched-actor-id">ID: {id}</h1>
+            {/* <p data-testid="searched-actor-first-name">{firstName}</p>
+            <p data-testid="searched-actor-last-name">{lastName}</p> */}
+            <h2 className="actor-full-name"  data-testid="searched-actor-full-name">{fullName}</h2>
+            <p className="actor-first-name"><strong> Films:</strong></p>
+            <ul className="actor-film-list">
+                    {films?.map(film => (
+                    <li key={film.id} className="actor-film" data-testid="specific-actor-film-titles">
+                        {film.title} {film.releaseYear}
+                    </li>
+                    ))}
+                </ul>
+            </div>
+            <Link data-testid="searched-actor-more-info" to={`/actor/${id}`} className="more-info">Specific Actor Page</Link>
+        </div>
     )
 }

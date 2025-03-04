@@ -14,22 +14,24 @@ export default function MovieByGenreList(){
     
         return (
             <div className="cards-container-main">
-            <div className="cards-container">
-                <h1>{genre} Movies</h1>
-                <Link data-testid="back-to-genres-link" to="/genres">Go back</Link>
-                <div data-testid="list-of-movies-of-specific-genre">
-                {movies.length > 0 ? (
-                    movies.map((movie, index) => (
-                        <PartialMovieCard key={movie.id} film={movie} index={index+1}
-                        />
-                    ))
-                ) : (
-                    <p>No movies found</p>
-                )}
+                <div className="cards-container">
+                    <div className="header">
+                        <h1 className="titleMain">{genre} Movies</h1>
+                        <div className="links">
+                            <Link data-testid="back-to-genres-link" className="more-info" to="/genres">Go back</Link>
+                        </div>
+                    </div>
+                    <div className="films-list" data-testid="list-of-movies-of-specific-genre">
+                        {movies.length > 0 ? (
+                            movies.map((movie, index) => (
+                                <PartialMovieCard key={movie.id} film={movie} index={index + 1} />
+                            ))
+                        ) : (
+                            <p>No movies found</p>
+                        )}
+                    </div>
                 </div>
-            </div>
-            </div>
-            
+            </div>            
           );
     
 }

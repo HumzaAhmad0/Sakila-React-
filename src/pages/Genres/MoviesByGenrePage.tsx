@@ -1,4 +1,4 @@
-import MovieByGenreList from "../components/Films/MovieByGenreList";
+import MovieByGenreList from "../../components/Films/MovieByGenreList";
 
 export default function MovieByGenrePage(){
     return(

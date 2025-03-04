@@ -23,7 +23,12 @@ export default function ActorDetails(){
          .finally(()=>setLoading(false))
     }, [id])
 
-    if(loading) return <p>loading...</p>
+    if(loading) return (
+                // <p>loading...</p>
+                <div className="header">
+                                <h1 className="titleMain">L o a d i n g  .  .  .</h1>
+                </div>
+                )
     if(error !== null) return <p data-testid="specific-actor-not-found">{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { baseUrl } from "../config";
-import { Actor } from "../types";
-import ActorForm from "../components/Actor/ActorForm";
+import { baseUrl } from "../../config";
+import { Actor } from "../../types";
+import ActorForm from "../../components/Actor/ActorForm";
 
 
 
@@ -30,7 +30,12 @@ export default function UpdateActorPage(){
         .finally(()=>setLoading(false))
     }, [id])
 
-    if(loading) return <p>loading...</p>
+    if(loading) return (
+      // <p>loading...</p>
+      <div className="header">
+                      <h1 className="titleMain">L o a d i n g  .  .  .</h1>
+      </div>
+      )
     if(error !== null) return <p data-testid="specific-actor-not-found">{error.message}</p>
     if(actor === null) return <p>failed to load actor</p>
 
@@ -67,10 +72,12 @@ export default function UpdateActorPage(){
     }
         
     return(
-      <div>
-        <h1 data-testid="update-actor-heading">Edit Actor: {initalFName} {id}</h1>
-        <ActorForm initialData={actor} onSubmit={handleSubmitActor}/> 
-        <button data-testid="reset-update-actor-page-button" onClick={handleReset}>reset</button>
+      <div className="cards-container">
+        <div className="header">
+            <h1 className="titleMain">Edit Actor: {initalFName} {id}</h1>
+        </div>
+        <div><ActorForm initialData={actor} onSubmit={handleSubmitActor}/></div>
+        <button  className="more-info" data-testid="reset-update-actor-page-button" onClick={handleReset}>reset</button>
       </div>
     )
 };

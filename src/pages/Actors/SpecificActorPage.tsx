@@ -1,4 +1,4 @@
-import ActorDetails from "../components/Actor/ActorDetails";
+import ActorDetails from "../../components/Actor/ActorDetails";
 
 export default function SpecificActorPage(){
     return(

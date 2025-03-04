@@ -1,7 +1,7 @@
-import { baseUrl } from "../config";
-import ActorForm from "../components/Actor/ActorForm";
+import { baseUrl } from "../../config";
+import ActorForm from "../../components/Actor/ActorForm";
 import { useNavigate } from "react-router";
-import { ActorSubmission } from "../types";
+import { ActorSubmission } from "../../types";
 
 export default function CreateActorPage(){
     const navigate = useNavigate();
@@ -31,8 +31,10 @@ export default function CreateActorPage(){
       };
     
     return(
-      <div>
-        <h1>Create Actor</h1>
+      <div className="cards-container">
+        <div className="header">
+            <h1 className="titleMain">Create Actor</h1>
+        </div>
         <ActorForm onSubmit={handleSubmitActor}/>
       </div>
     )

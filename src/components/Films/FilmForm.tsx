@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FilmData, FilmSubmission } from "../../types";
 import { Link } from "react-router";
+import './FilmForm.css'
 
 interface FilmFormProps {
     initialData?: FilmData;
@@ -24,15 +25,7 @@ export default function FilmForm(props: FilmFormProps) {
     function handleSubmitFilm(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        if (title === "" && description === "" && rating === "" && actors === "" && genres === "") {
-            alert("Please fill out all fields.");
-            return;
-        }
 
-        if (title === "" && description === "" && actors === "" && genres === "") {
-            alert("Please fill out all fields.");
-            return;
-        }
 
         if (title.length > 128) {
             alert("Title is limited to 128 characters.");
@@ -41,6 +34,26 @@ export default function FilmForm(props: FilmFormProps) {
 
         if (releaseYear < 1901 || releaseYear > 2155) {
             alert("Release Year has to be within the range of 1901-2155");
+            return;
+        }
+
+        if (language < 1 || language > 16) {
+            alert("Language ID must be between 1 and 16.");
+            return;
+        }
+
+        if (movieLength < 1 || movieLength > 16) {
+            alert("Movie Duration must be between 1 and 32767 minutes.");
+            return;
+        }
+
+        if (rating === "") {
+            alert("Please select a rating.");
+            return;
+        }
+
+        if (title === "" && description === "" && actors === "" && genres === "") {
+            alert("Please fill out all fields.");
             return;
         }
 
@@ -67,10 +80,10 @@ export default function FilmForm(props: FilmFormProps) {
 
 
 
-
         const actorIds = actors.split(",")
         .map(actor => parseInt(actor.trim()))
         .filter(id => !isNaN(id));
+
         const genreIds = genres.split(",")
         .map(genre => parseInt(genre.trim()))
         .filter(id => !isNaN(id));
@@ -96,53 +109,55 @@ export default function FilmForm(props: FilmFormProps) {
     }
 
     return (
-        <form onSubmit={handleSubmitFilm}>
+        <form onSubmit={handleSubmitFilm} className="form-card">
             <label>Title:
                 <input
+                    className="form-input"
+                    data-testid="film-form-title"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </label>
-            <br />
             <label>Description:
                 <textarea
+                    className="form-input"
+                    data-testid="film-form-description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
-            <br />
             <label>Release Year:
                 <input
+                    className="form-input"
+                    data-testid="film-form-release_year"
                     type="number"
-                    min={0}
                     value={releaseYear}
                     onChange={(e) => setReleaseYear(Number(e.target.value))}
                 />
             </label>
-            <br />
-            <label>Language (number from 1-16):
+            <label>Language ID (number from 1-16):
                 <input
+                    className="form-input"
+                    data-testid="film-form-language"
                     type="number"
-                    min={1}
-                    max={16}
                     value={language}
                     onChange={(e) => setLanguage(Number(e.target.value))}
                 />
             </label>
-            <br />
             <label>Movie Duration in minutes (number from 1-32767):
                 <input
+                    className="form-input"
+                    data-testid="film-form-duration"
                     type="number"
-                    min={1}
-                    max={32767}
                     value={movieLength}
                     onChange={(e) => setMovieLength(Number(e.target.value))}
                 />
             </label>
-            <br />
             <label>Rating:
                 <select
+                    className="form-input"
+                    data-testid="film-form-rating"
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
                 >
@@ -154,57 +169,57 @@ export default function FilmForm(props: FilmFormProps) {
                     <option value="NC-17">NC-17</option>
                 </select>
             </label>
-            <br />
-            <label>Actors (comma-separated IDs):
+            <label>Actor IDs (comma-separated IDs):
                 <input
+                    className="form-input"
+                    data-testid="film-form-cast"
                     type="text"
                     value={actors}
                     onChange={(e) => setActors(e.target.value)}
                 />
             </label>
-            <br />
-            <label>Genres (comma-separated IDs[1-16]):
+            <label>Genre IDs (comma-separated IDs[1-16]):
                 <input
+                    className="form-input"
+                    data-testid="film-form-genres"
                     type="text"
                     value={genres}
                     onChange={(e) => setGenres(e.target.value)}
                 />
             </label>
-            <br />
             <label>Score (from 0.00 to 100):
                 <input
+                    className="form-input"
+                    data-testid="film-form-score"
                     type="number"
-                    min={0}
-                    max={100}
                     step="0.01"
                     value={score}
                     onChange={(e) => setScore(parseFloat(e.target.value))}
                 />
             </label>
-            <br />
             <label>Rental Rate (from 0.00 to 99.99):
                 <input
+                    className="form-input"
+                    data-testid="film-form-rental_rate"
                     type="number"
-                    min={0}
-                    max={99.99}
                     step="0.01"
                     value={rentalRate}
                     onChange={(e) => setRentalRate(parseFloat(e.target.value))}
                 />
             </label>
-            <br />
             <label>Rental Duration (from 1-255):
                 <input
+                    className="form-input"
+                    data-testid="film-form-rental_duration"
                     type="number"
-                    min={1}
-                    max={255}
                     value={rentalDuration}
                     onChange={(e) => setRentalDuration(Number(e.target.value))}
                 />
             </label>
             <br />
-            <button type="submit">Submit</button>
-            <Link to="/films">Go back</Link>
+            <button className="submit-btn" data-testid="film-form-submit-button" type="submit">Submit</button>
+            <Link className="back-link" data-testid="film-form-back-button" to="/films">Go back</Link>
         </form>
+
     );
 }

@@ -1,4 +1,4 @@
-import ActorList from "../components/Actor/ActorList";
+import ActorList from "../../components/Actor/ActorList";
 
 export default function ActorPage(){
     return(

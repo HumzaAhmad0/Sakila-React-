@@ -46,7 +46,7 @@ export default function ActorForm(props: ActorFormProps){
     }
 
     return(
-        <form onSubmit={handleSubmitActor}>
+        <form onSubmit={handleSubmitActor} className="form-card">
             <label> First Name: <input
                 data-testid="actor-form-first-name"
                 type="text"
@@ -54,7 +54,6 @@ export default function ActorForm(props: ActorFormProps){
                 onChange={(e) => setFirstName(e.target.value)}
             />
             </label>
-            <br />
             <label>Last Name:<input
                 data-testid="actor-form-last-name"
                 type="text"
@@ -62,7 +61,6 @@ export default function ActorForm(props: ActorFormProps){
                 onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
-            <br />
             <label>Movies starred in (comma-separated IDs):<input
                 data-testid="actor-form-film-list"
                 type="text"
@@ -70,9 +68,8 @@ export default function ActorForm(props: ActorFormProps){
                 onChange={(e) => setMovies(e.target.value)}
                 />
             </label>
-            <br />
-            <button data-testid="actor-form-submit-button" type="submit">Submit</button>
-            <Link data-testid="actor-form-back-button" to="/actors">Go back</Link>
+            <button className="submit-btn" data-testid="actor-form-submit-button" type="submit">Submit</button>
+            <Link className="back-link" data-testid="actor-form-back-button" to="/actors">Go back</Link>
         </form>
     )
 }

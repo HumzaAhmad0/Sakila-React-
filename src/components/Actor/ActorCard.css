@@ -1,0 +1,120 @@
+.actor-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+}
+
+.actor-card {
+    background-color: #f4e1e1;
+    border-radius: 25px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    width: 60vw;  
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    position: relative;  
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+
+.actor-card:hover {
+    transform: translateY(-5px);
+    z-index: 5;
+}
+
+.actor-card .actor-id {
+    font-family: "Limelight", sans-serif;
+    font-size: 2rem;
+    color: black;
+    margin: 0;
+}
+
+.actor-card .actor-full-name {
+    font-family: "Moderustic", sans-serif;
+    font-size: 1.4rem;
+    color: #f18f8f;
+    margin: 10px 0;
+}
+
+
+.actor-card .actor-first-name,
+.actor-card .actor-last-name{
+    font-family: "Moderustic", sans-serif;
+    font-size: 1.2rem;
+    color: black;
+    margin: 10px 0;
+}
+
+.actor-card .actor-films {
+    font-family: "Moderustic", sans-serif;
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.actor-card .actor-film-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px; 
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.actor-card .actor-film {
+    font-family: "Moderustic", sans-serif;
+    font-size: 1rem;
+    color: black;
+    text-align: left;
+    margin: 5px 0;
+}
+
+.actor-card .actor-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.actor-card .actor-update-link,
+.actor-card .actor-all-actors-link {
+    font-family: 'Ultra', sans-serif;
+    color: #f18f8f;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    border: 2px solid #f18f8f;
+    transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+.actor-card .actor-update-link:hover,
+.actor-card .actor-all-actors-link:hover {
+    background-color: #f18f8f;
+    color: white;
+    text-decoration: underline;
+}
+
+.actor-card .actor-delete-btn {
+    font-family: 'Ultra', sans-serif;
+    color: white;
+    background-color: #f18f8f;
+    border: 2px solid #f18f8f;
+    padding: 8px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.actor-card .actor-delete-btn:hover {
+    background-color: darkred;
+    color: white;
+}
