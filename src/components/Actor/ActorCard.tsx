@@ -41,7 +41,8 @@ export default function ActorCard(props: ActorCardProps){
                 <ul className="actor-film-list">
                     {films?.map(film => (
                     <li key={film.id} className="actor-film" data-testid="specific-actor-film-titles">
-                        {film.title} {film.releaseYear}
+                        <Link to={`/film/${film.id}`}>{film.title}</Link>
+                        {/* {film.title} {film.releaseYear} */}
                     </li>
                     ))}
                 </ul>
