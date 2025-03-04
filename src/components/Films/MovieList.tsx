@@ -29,7 +29,6 @@ export default function MovieList(){
         )
     if(error !== null) return <p>{error.message}</p>
     if(movies === null) return <p>failed to load movies</p>
-    console.log(movies)
 
     return (
     <div className="cards-container-main">

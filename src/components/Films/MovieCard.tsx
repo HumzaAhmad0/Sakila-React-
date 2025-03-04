@@ -38,8 +38,8 @@ export default function MovieCard(props: MovieCardProps){
                 <p><strong>Language:</strong> {language.name}</p>
                 <p><strong>Run Time:</strong> {Math.floor(movieLength / 60)}h {movieLength % 60}m</p>
                 <p><strong>Rated:</strong> {rating}</p>
+                <h3 className="cast-title"><strong>Cast</strong></h3>
                 <div className="cast-container">
-                    <h3 className="cast-title"><strong>Cast</strong></h3>
                     <ul className="cast-list">
                         {cast?.map(actor => (
                             <li key={actor.id}>
@@ -49,11 +49,16 @@ export default function MovieCard(props: MovieCardProps){
                         ))}
                     </ul>
                 </div>
-                <p><strong>Genre:</strong> {genre?.map(g => <span key={g.name}>
-                    {/* {g.name} */}
-                    <Link to={`/genre/${g.name}`}>{g.name}</Link>
-                    
-                    </span>)}</p>
+                <h3 className="cast-title"><strong>Genre</strong></h3>
+                <div className="cast-container">
+                    <ul className="cast-list">
+                        {genre?.map(g => 
+                        <li key={g.name}>
+                            {/* {g.name} */}
+                            <Link to={`/genre/${g.name}`}>{g.name}</Link>
+                        </li>)}
+                    </ul>
+                </div>
                 <p><strong>Rental Rate:</strong> {rental}</p>
                 <h2 className="score">{score} / 100</h2>
             </div>

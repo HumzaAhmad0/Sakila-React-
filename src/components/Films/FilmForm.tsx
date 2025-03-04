@@ -42,7 +42,7 @@ export default function FilmForm(props: FilmFormProps) {
             return;
         }
 
-        if (movieLength < 1 || movieLength > 16) {
+        if (movieLength < 1 || movieLength > 32767 ) {
             alert("Movie Duration must be between 1 and 32767 minutes.");
             return;
         }
