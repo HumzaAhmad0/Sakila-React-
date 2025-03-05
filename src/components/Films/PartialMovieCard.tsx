@@ -31,7 +31,7 @@ export default function PartialMovieCard(props: PartialMovieCardProps){
     if (score != undefined){
         return(
             <article className="card">
-            <h1 data-testid={`movielist-title-${props.index}`} className="title">{title}</h1>
+            <h1 data-testid={`movielist-title-${props.index}`} className="title">{title.toLowerCase().replace(/\b(\s\w|^\w)/g, function (letter) { return letter.toUpperCase(); })}</h1>
             <h2 data-testid={`movielist-year-${props.index}`} className="year">{releaseYear}</h2>
             <p data-testid={`movielist-desc-${props.index}`} className="desc">{description}</p>
             <h2 data-testid={`movielist-score-${props.index}`} className="score">{score} /100</h2>

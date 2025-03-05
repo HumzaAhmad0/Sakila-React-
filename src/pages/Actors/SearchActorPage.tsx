@@ -10,8 +10,8 @@
         const [name, setName] = useState<string|"">("")
 
         const [actors, setActors] = useState<PartialActor[]>([])
-        const[actor, setActor] = useState<Actor|null>(null)
-        const[loading, setLoading] = useState(false)
+        const [actor, setActor] = useState<Actor|null>(null)
+        const [loading, setLoading] = useState(false)
         const [error, setError] = useState<string | null>(null);
 
         function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>){
@@ -19,7 +19,6 @@
             setActor(null);
             setActors([]);
             setError(null);
-
             setLoading(true);
         
             if (id) {
@@ -95,7 +94,7 @@
                 {actor && <SearchedActorCard data-testid="actor-by-id-result" actor={actor} />}
 
                 {actors.length > 0 &&(
-                    <div className="cards-container-main">
+                    // <div className="cards-container-main">
                             <div className="cards-container">
                                 <div className="header">
                                 <h1 className="titleMain">List of Filtered Actors</h1>
@@ -106,7 +105,7 @@
                                 ))}
                                 </div>
                             </div>
-                    </div>
+                    // </div>
                 )}
             </div>
         )

@@ -30,7 +30,7 @@ export default function PartialActorCard(props: PartialActorCardProps){
         // }
     return(
         <article className="card">
-            <h1 data-testid={`actorlist-name-${props.index}`} className="actor-name">{props.actor.fullName}</h1>
+            <h1 data-testid={`actorlist-name-${props.index}`} className="actor-name">{props.actor.fullName.toLowerCase().replace(/\b(\s\w|^\w)/g, function (letter) { return letter.toUpperCase(); })}</h1>
             <Link data-testid={`actorlist-moreinfo-${props.index}`} className="more-info" to={`/actor/${props.actor.id}` }>More Information</Link>
             {/* <button onClick={handleDelete} className="delete-btn" data-testid="specific-actor-delete-button">Delete Actor</button> */}
         </article>

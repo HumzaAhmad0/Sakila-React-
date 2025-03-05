@@ -29,7 +29,7 @@ export default function GenreList(){
     if(genres === null) return <p>failed to load actor</p>
 
     return(
-        <div className="cards-container-main">
+        // <div className="cards-container-main">
             <div className="cards-container">
                 <div className="header">
                     <h1 className="titleMain">List of All Genres</h1>
@@ -40,6 +40,6 @@ export default function GenreList(){
                     )}
                 </div>
             </div>
-        </div>
+        // </div>
 )
 }

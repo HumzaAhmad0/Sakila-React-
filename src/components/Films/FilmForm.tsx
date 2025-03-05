@@ -45,7 +45,24 @@ export default function FilmForm(props: FilmFormProps) {
         if (movieLength < 1 || movieLength > 32767 ) {
             alert("Movie Duration must be between 1 and 32767 minutes.");
             return;
+        }        
+        
+        if (rentalRate < 0 || rentalRate > 99.99 ) {
+            alert("Rental Rate must be between 0.00 and 99.99.");
+            return;
+        }        
+
+        if (score < 0 || score > 100 ) {
+            alert("Score must be between 0 and 100.");
+            return;
+        }     
+
+        if (rentalDuration < 1 || rentalDuration > 255 ) {
+            alert("Rental Duration must be between 1 and 255.");
+            return;
         }
+
+
 
         if (rating === "") {
             alert("Please select a rating.");

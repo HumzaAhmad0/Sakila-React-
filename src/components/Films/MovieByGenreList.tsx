@@ -13,7 +13,7 @@ export default function MovieByGenreList(){
         }, [genre])
     
         return (
-            <div className="cards-container-main">
+            // <div className="cards-container-main">
                 <div className="cards-container">
                     <div className="header">
                         <h1 className="titleMain">{genre} Movies</h1>
@@ -31,7 +31,7 @@ export default function MovieByGenreList(){
                         )}
                     </div>
                 </div>
-            </div>            
+            // </div>            
           );
     
 }

@@ -18,9 +18,10 @@ export default function SearchedActorCard(props: SearchedActorCardProps){
             <h2 className="actor-full-name"  data-testid="searched-actor-full-name">{fullName}</h2>
             <p className="actor-first-name"><strong> Films:</strong></p>
             <ul className="actor-film-list">
-                    {films?.map(film => (
-                    <li key={film.id} className="actor-film" data-testid="specific-actor-film-titles">
-                        {film.title} {film.releaseYear}
+                    {films?.map((film, index) => (
+                    <li key={film.id} className="actor-film">
+                        {/* {film.title.toLowerCase().replace(/\b(\s\w|^\w)/g, function (letter) { return letter.toUpperCase(); })} {film.releaseYear} */}
+                        <Link  data-testid={`searched-actor-film-titles-${index + 1}`} to={`/film/${film.id}`}>{film.title.toLowerCase().replace(/\b(\s\w|^\w)/g, function (letter) { return letter.toUpperCase(); })}</Link>
                     </li>
                     ))}
                 </ul>

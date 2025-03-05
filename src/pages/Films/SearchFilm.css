@@ -1,8 +1,31 @@
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Make the container of movie cards scrollable */
+.cards-container-main {
+    overflow-y: auto;  /* Allow scrolling in the vertical direction */
+    max-height: 80vh;  /* Set a max height for the container so it can scroll */
+    scroll-behavior: smooth;  /* Enable smooth scrolling in the container */
+}
+
+/* Style each movie card with a unique id */
+.films-list .film-card {
+    scroll-margin-top: 20px;  /* Add some margin from the top of the viewport when scrolled into view */
+    scroll-snap-align: start;  /* Align the movie cards at the start of the scroll container */
+}
+
+/* Optionally, style the active film card (if you'd like a highlighted effect) */
+.films-list .film-card:focus {
+    border: 2px solid #f18f8f;  /* Highlight the focused card */
+}
+
 .search-film-form {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 40vh;
     width: 100%;
     padding: 20px;
 }

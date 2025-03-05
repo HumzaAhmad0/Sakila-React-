@@ -39,16 +39,16 @@ export default function ActorCard(props: ActorCardProps){
                 <h2 className="actor-full-name" data-testid="specific-actor-full-name">{fullName}</h2>
                 <p className="actor-first-name"><strong> Films:</strong></p>
                 <ul className="actor-film-list">
-                    {films?.map(film => (
-                    <li key={film.id} className="actor-film" data-testid="specific-actor-film-titles">
-                        <Link to={`/film/${film.id}`}>{film.title}</Link>
+                    {films?.map((film, index) => (
+                    <li key={film.id} className="actor-film">
+                        <Link data-testid={`specific-actor-film-titles-${index + 1}`} to={`/film/${film.id}`}>{film.title.toLowerCase().replace(/\b(\s\w|^\w)/g, function (letter) { return letter.toUpperCase(); })}</Link>
                         {/* {film.title} {film.releaseYear} */}
                     </li>
                     ))}
                 </ul>
             </div>
             <div className="button-container">
-                <Link to="/actors" className="more-info" data-testid="actor-all-actors-link">List of All Actors</Link>
+                <Link to="/actors" className="more-info" data-testid="specific-actor-all-actors-link">List of All Actors</Link>
                 <Link to={`/updateActor/${id}`} className="more-info" data-testid="specific-actor-update-link">Update Actor</Link>
                 <button onClick={handleDelete} className="delete-btn" data-testid="specific-actor-delete-button">Delete Actor</button>
             </div>

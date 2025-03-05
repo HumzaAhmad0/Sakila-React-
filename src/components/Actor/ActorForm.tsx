@@ -16,7 +16,7 @@ export default function ActorForm(props: ActorFormProps){
 
     function handleSubmitActor(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-    
+
         if (!firstName || !lastName || !movies) {
           alert("Please fill out all fields.");
           return;

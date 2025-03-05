@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 30vh;
     width: 100%;
     padding: 20px;
 }
@@ -116,4 +116,13 @@
     background-color: #f18f8f;
     color: white;
 }
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #d5d3d5;  /* Light grey background */
+  color: #a9a9a9;  /* Grey text color */
+  border: 1px solid #a9a9a9;  /* Grey border */
+}
+
 

@@ -30,7 +30,7 @@ export default function ActorList(){
     if(actors === null) return <p>failed to load actor</p>
 
     return (
-        <div className="cards-container-main">
+        // <div className="cards-container-main">
           <div className="cards-container">
             <div className="header">
               <h1 className="titleMain">List of All Actors</h1>
@@ -49,6 +49,6 @@ export default function ActorList(){
               ))}
             </div>
           </div>
-        </div>
+        // </div>
       )
 }

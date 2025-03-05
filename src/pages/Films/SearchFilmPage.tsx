@@ -185,7 +185,7 @@ export default function SearchFilmPage() {
             {movie && <SearchedMovieCard data-testid="film-by-id-result" film={movie} />}
 
             {movies.length > 0 && (
-                    <div className="cards-container-main">
+                    // <div className="cards-container-main">
                         <div className="cards-container">
                             <div className="header">
                                 <h1 className="titleMain">List of Filtered Films</h1>
@@ -196,7 +196,7 @@ export default function SearchFilmPage() {
                                 )}
                             </div>
                         </div>
-                    </div>
+                    // </div>
             )}
         </div>
     );
